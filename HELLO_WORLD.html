@@ -1,60 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"></script>
     <title>註冊</title>
     <style>
-      div {
-          text-align: center;
-      }
+        div {
+            text-align: center;
+        }
 
-      img {
-          width: 25%;
-          height: 25%;
-      }
-      .button {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
-      
-      .button2 {background-color: #008CBA;} /* Blue */
-      .button3 {background-color: #f44336;} /* Red */ 
-      .button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
-      .button5 {background-color: #555555;} /* Black */
-  </style>
+        img {
+            width: 25%;
+            height: 25%;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button2 {
+            background-color: #008CBA;
+        }
+
+        /* Blue */
+        .button3 {
+            background-color: #f44336;
+        }
+
+        /* Red */
+        .button4 {
+            background-color: #e7e7e7;
+            color: black;
+        }
+
+        /* Gray */
+        .button5 {
+            background-color: #555555;
+        }
+
+        /* Black */
+    </style>
 </head>
+
 <body style="background-color:lightblue;">
     <h1 style="text-align:center">歡迎加入</h1>
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="#">
-			<h3 >輸入電子郵件</h1>
-			<input type="email" placeholder="Email" />
-            <h3>輸入暱稱</h2>
-			<input type="text" placeholder="暱稱" />
-            <h3>輸入密碼</h3>
-			<input type="text" placeholder="密碼" />
-            <h3>再次輸入密碼</h3>
-			<input type="text" placeholder="再次輸入密碼" /><br>
-			<button class="button2">確認送出</button>
-            <button class="button2">返回</button>
-		</form>
-        <div><img src="register.png" alt="doraemon" width="300" height="200" ></div>
-	</div>
-<footer>
-	<p>
-		- created by NKNU SEM
-	</p>
-</footer>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h3>輸入電子郵件</h1>
+                    <input type="email" placeholder="Email" />
+                    <h3>輸入暱稱</h2>
+                        <input type="text" placeholder="暱稱" />
+                        <h3>輸入密碼</h3>
+                        <input type="text" placeholder="密碼" />
+                        <h3>再次輸入密碼</h3>
+                        <input type="text" placeholder="再次輸入密碼" /><br>
+                        <button class="button2">確認送出</button>
+                        <button class="button2">返回</button>
+            </form>
+            <div><img src="register.png" alt="doraemon" width="300" height="200"></div>
+        </div>
+        <footer>
+            <p>
+                - created by NKNU SEM
+            </p>
+        </footer>
 </body>
+
 </html>
