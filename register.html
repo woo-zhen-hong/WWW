@@ -43,7 +43,7 @@
                     <div class="row col p-2">
                         <!-- <div class="d-grid gap-2  mx-auto"> -->
                         <div class="col d-grid  gap-2  mx-auto">
-                            <button class="btn button2">確認送出</button>
+                            <button class="btn button2" data-bs-toggle="modal" data-bs-target="#exampleModal">確認送出</button>
                         </div>
                         <div class="col d-grid  gap-2  mx-auto">
                             <button class="btn button2">返回</button>
@@ -55,6 +55,21 @@
                 <img src="register.png" width="100%" height="auto">
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: red;">歡迎加入</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        即將導回登入頁面
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">確認</button>
+                    </div>
+                </div>
+            </div>
     </div>
 
 </body>
