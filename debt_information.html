@@ -54,132 +54,214 @@
     </nav>
     <div class="container-fluid p-3">
         <h3>瀏覽債務資訊</h3>
-        <div class="row">
-            <div class="outer col-auto">
-                <div class="inner"> <a onclick="showAll();">全部</a>
-                </div>
+        <main>
+
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1">Codepen</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2">Dribbble</label>
+
+            <input id="tab3" type="radio" name="tabs">
+            <label for="tab3">Dropbox</label>
+
+            <input id="tab4" type="radio" name="tabs">
+            <label for="tab4">Drupal</label>
+
+            <section id="content1">
+                <p>
+                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin
+                    shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short
+                    ribs.
+                </p>
+                <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare
+                    ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round
+                    venison.
+                </p>
+            </section>
+
+            <section id="content2">
+                <p>
+                    Bacon ipsum dolor sit amet landjaeger sausage brisket, jerky drumstick fatback boudin ball tip
+                    turducken. Pork belly meatball t-bone bresaola tail filet mignon kevin turkey ribeye shank flank
+                    doner cow kielbasa shankle. Pig swine chicken hamburger, tenderloin turkey rump ball tip sirloin
+                    frankfurter meatloaf boudin brisket ham hock. Hamburger venison brisket tri-tip andouille pork belly
+                    ball tip short ribs biltong meatball chuck. Pork chop ribeye tail short ribs, beef hamburger
+                    meatball kielbasa rump corned beef porchetta landjaeger flank. Doner rump frankfurter meatball
+                    meatloaf, cow kevin pork pork loin venison fatback spare ribs salami beef ribs.
+                </p>
+                <p>
+                    Jerky jowl pork chop tongue, kielbasa shank venison. Capicola shank pig ribeye leberkas filet mignon
+                    brisket beef kevin tenderloin porchetta. Capicola fatback venison shank kielbasa, drumstick ribeye
+                    landjaeger beef kevin tail meatball pastrami prosciutto pancetta. Tail kevin spare ribs ground round
+                    ham ham hock brisket shoulder. Corned beef tri-tip leberkas flank sausage ham hock filet mignon beef
+                    ribs pancetta turkey.
+                </p>
+            </section>
+
+            <section id="content3">
+                <p>
+                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin
+                    shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short
+                    ribs.
+                </p>
+                <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare
+                    ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round
+                    venison.
+                </p>
+            </section>
+
+            <section id="content4">
+                <p>
+                    Bacon ipsum dolor sit amet landjaeger sausage brisket, jerky drumstick fatback boudin ball tip
+                    turducken. Pork belly meatball t-bone bresaola tail filet mignon kevin turkey ribeye shank flank
+                    doner cow kielbasa shankle. Pig swine chicken hamburger, tenderloin turkey rump ball tip sirloin
+                    frankfurter meatloaf boudin brisket ham hock. Hamburger venison brisket tri-tip andouille pork belly
+                    ball tip short ribs biltong meatball chuck. Pork chop ribeye tail short ribs, beef hamburger
+                    meatball kielbasa rump corned beef porchetta landjaeger flank. Doner rump frankfurter meatball
+                    meatloaf, cow kevin pork pork loin venison fatback spare ribs salami beef ribs.
+                </p>
+                <p>
+                    Jerky jowl pork chop tongue, kielbasa shank venison. Capicola shank pig ribeye leberkas filet mignon
+                    brisket beef kevin tenderloin porchetta. Capicola fatback venison shank kielbasa, drumstick ribeye
+                    landjaeger beef kevin tail meatball pastrami prosciutto pancetta. Tail kevin spare ribs ground round
+                    ham ham hock brisket shoulder. Corned beef tri-tip leberkas flank sausage ham hock filet mignon beef
+                    ribs pancetta turkey.
+                </p>
+            </section>
+
+        </main>
+        <main>
+            <div class="row tab">
+                <div class="tablinks checked col-auto " id="all_tab" onclick="show(event,'all')"> 全部</div>
+                <div class="tablinks col-auto" id="debt_tab" onclick="show(event,'debt')">欠債資訊</div>
+                <div class="tablinks col-auto" id="back_tab" onclick="show(event,'back')">還款資訊</div>
             </div>
-            <div class="outer col-auto">
-                <div class="inner"> <a onclick="showDebt();">欠債資訊</a></div>
+            <div class="tabcontent" id="all" style="display:none">
+                <table class="table table-striped table-hover">
+                    <thead style="text-align:center">
+                        <tr>
+                            <th>筆數</th>
+                            <td colspan="2">姓名</td>
+                            <td>數目</td>
+                            <td>修改按鈕</td>
+                            <td>刪除按鈕</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="2" class="table-active">JACKY</td>
+                            <td>欠我250</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td colspan="2" class="table-active">郭台銘</td>
+                            <td>欠我25000</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2" class="table-active">JACKY</td>
+                            <td>還我250</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td colspan="2" class="table-active">郭台銘</td>
+                            <td>還我25000</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+                    </tbody>
+
+                </table>
             </div>
-            <div class="outer col-auto">
-                <div class=" inner"><a onclick="showBack();">還款資訊</a></div>
+            <div class="tabcontent" id="debt" style="display:none">
+                <table class="table table-striped table-hover">
+                    <thead style="text-align:center">
+                        <tr>
+                            <th>筆數</th>
+                            <td colspan="2">欠債人姓名</td>
+                            <td>欠債數目</td>
+                            <td>修改按鈕</td>
+                            <td>刪除按鈕</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="2" class="table-active">JACKY</td>
+                            <td>欠我250</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td colspan="2" class="table-active">郭台銘</td>
+                            <td>欠我25000</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
             </div>
-        </div>
-        <div class="all" id="all" style="display:none">
-            <table class="table table-striped table-hover">
-                <thead style="text-align:center">
-                    <tr>
-                        <th>筆數</th>
-                        <td colspan="2">姓名</td>
-                        <td>數目</td>
-                        <td>修改按鈕</td>
-                        <td>刪除按鈕</td> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td colspan="2" class="table-active">JACKY</td>
-                        <td >欠我250</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" >修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td colspan="2" class="table-active">郭台銘</td>
-                        <td >欠我25000</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2" class="table-active">JACKY</td>
-                        <td >還我250</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" >修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td colspan="2" class="table-active">郭台銘</td>
-                        <td >還我25000</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td>
-                    </tr>
-                </tbody>
-            
-            </table>
-        </div>
-        <div class="debt" id="debt" style="display:none">
-            <table class="table table-striped table-hover">
-                <thead style="text-align:center">
-                    <tr>
-                        <th>筆數</th>
-                        <td colspan="2">欠債人姓名</td>
-                        <td>欠債數目</td>
-                        <td>修改按鈕</td>
-                        <td>刪除按鈕</td> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td colspan="2" class="table-active">JACKY</td>
-                        <td >欠我250</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" >修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td colspan="2" class="table-active">郭台銘</td>
-                        <td >欠我25000</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td>
-                    </tr>
-                    
-                </tbody>
-            
-            </table>
-        </div>
-        <div class="back" id="back" style="display: none">
-            <table class="table table-striped table-hover">
-                <thead style="text-align:center">
-                    <tr>
-                        <th>筆數</th>
-                        <td colspan="2">還債人姓名</td>
-                        <td>還債數目</td>
-                        <td>修改按鈕</td>
-                        <td>刪除按鈕</td> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td colspan="2" class="table-active">JACKY</td>
-                        <td >還我250</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" >修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td colspan="2" class="table-active">郭台銘</td>
-                        <td >還我25000</td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button></td>
-                        <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">刪除</button></td>
-                    </tr>
-                    
-                </tbody>
-            
-            </table>
-        </div>
+            <div class="tabcontent" id="back" style="display: none">
+                <table class="table table-striped table-hover">
+                    <thead style="text-align:center">
+                        <tr>
+                            <th>筆數</th>
+                            <td colspan="2">還債人姓名</td>
+                            <td>還債數目</td>
+                            <td>修改按鈕</td>
+                            <td>刪除按鈕</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="2" class="table-active">JACKY</td>
+                            <td>還我250</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td colspan="2" class="table-active">郭台銘</td>
+                            <td>還我25000</td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75">修改</button>
+                            </td>
+                            <td align="center"><button type="button" class="btn btn-secondary btn-sm w-75"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</button></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </main>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -194,29 +276,26 @@
                 <div class="modal-footer">
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">關閉</span>
-                      </button>
+                    </button>
                 </div>
             </div>
-    </div>
-    <script>
-        function showAll(){
-            document.getElementById("all").style.display = "block";
-            document.getElementById("debt").style.display = "none";
-            document.getElementById("back").style.display = "none";
-        }
-
-        function showDebt(){
-            document.getElementById("all").style.display = "none";
-            document.getElementById("debt").style.display = "block";
-            document.getElementById("back").style.display = "none";
-        }
-
-        function showBack(){
-            document.getElementById("all").style.display = "none";
-            document.getElementById("debt").style.display = "none";
-            document.getElementById("back").style.display = "block";
-        }
-    </script>
+        </div>
+        <script>
+            document.getElementById('all').style.display = "block";
+            function show(evt, content) {
+                // 宣告變數
+                var i, tabcontent, tablinks;
+                document.getElementsByClassName('tablinks').style.color = '#bbb';
+                // 把全部內容隱藏
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                // 將點擊內容顯示
+                document.getElementById(content).style.display = "block";
+                document.getElementById(`${content}_tab`).style.color = "black";
+            }
+        </script>
 </body>
 
 </html>
