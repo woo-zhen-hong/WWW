@@ -13,7 +13,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
         integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <title>圖表化資訊</title>
+    <link href="information.css" rel="stylesheet" type="text/css">
 </head>
 
 <body style="background-color:lightblue;">
@@ -52,8 +55,116 @@
         </div>
     </nav>
     <div class="container-fluid">
-
+        <p></p>
+        <div class="row">
+            <div class="outer col-auto">
+                <div class="inner"> <a onclick="showAll();">全部</a>
+                </div>
+            </div>
+            <div class="outer col-auto">
+                <div class="inner"> <a onclick="showDebt();">欠債資訊</a></div>
+            </div>
+            <div class="outer col-auto">
+                <div class=" inner"><a onclick="showBack();">還款資訊</a></div>
+            </div>
+        </div>
+        <p></p>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
     </div>
+    <script>
+        function showAll(){
+            var canvas = document.getElementById('myChart');
+            const context = canvas.getContext('2d');
+            context.beginPath();
+            var xValues = ["JACKY", "郭台銘", "JACKY", "郭台銘"];
+            var yValues = [250, 25000, 250, 25000];
+            var barColors = ["red","red","blue","blue"];
+
+            new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+                }]
+            },
+            options: {
+                legend: {display: true , legendText: "欠債"},
+                scales: {
+                yAxes: [{
+                    ticks: {
+                    beginAtZero: true
+                    }
+                }],
+                }
+            }
+            });
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function showDebt(){
+            var canvas = document.getElementById('myChart');
+            const context = canvas.getContext('2d');
+            context.beginPath();
+            var xValues = ["JACKY", "郭台銘"];
+            var yValues = [250, 25000];
+            var barColors = "red";
+
+            new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+                }]
+            },
+            options: {
+                legend: {display: false},
+                scales: {
+                yAxes: [{
+                    ticks: {
+                    beginAtZero: true
+                    }
+                }],
+                }
+            }
+            });
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function showBack(){
+            var canvas = document.getElementById('myChart');
+            const context = canvas.getContext('2d');
+            context.beginPath();
+            var xValues = ["JACKY", "郭台銘"];
+            var yValues = [250, 25000];
+            var barColors = "blue";
+
+            new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+                }]
+            },
+            options: {
+                legend: {display: false},
+                scales: {
+                yAxes: [{
+                    ticks: {
+                    beginAtZero: true
+                    }
+                }],
+                }
+            }
+            });
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
 </body>
 
 </html>
