@@ -95,7 +95,11 @@ const DebtInformation = () => {
 
     }
     const handleEdit = () => {
-
+        setOpen(false);
+        messageApi.open({
+            type: 'success',
+            content: '更新成功',
+        });
     }
     const handleSubmit = () => {
         setOpen(false);
