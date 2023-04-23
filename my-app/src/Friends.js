@@ -12,7 +12,6 @@ const Friends = () => {
             title: '姓名',
             dataIndex: 'name',
             key: 'name',
-            render: (text) => <a>{text}</a>,
         },
         {
             title: '債務情況',
@@ -20,7 +19,7 @@ const Friends = () => {
             key: 'age',
         },
         {
-            title: '',
+            title: '資訊',
             key: 'tags',
             dataIndex: 'tags',
             render: (_, { tags }) => (
