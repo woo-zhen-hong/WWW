@@ -53,47 +53,33 @@ const DebtInformation = () => {
             title: '欠款人',
             dataIndex: 'debt_name',
             key: 'debt_name',
-            render: (_, record) => (
-                <>
-                    <a style={{ color: 'black' }}>JACKY</a>
-                </>
-            ),
         },
         {
             title: '還款人',
             dataIndex: 'back_name',
             key: 'back_name',
-            render: (_, record) => (
-                <>
-                    <a style={{ color: 'black' }}>軟妹</a>
-                </>
-                
-            ),
+
         },
         {
             title: '金額',
             dataIndex: 'money',
             key: 'money',
-            render: (_, record) => (
-                <>
-                    <a style={{ color: 'red' }}>250</a>
-                </>
-            ),
+
         },
         {
             title: '資訊',
-            key: '還錢',
-            dataIndex: '還錢',
-            render: (_, { tags }) => (
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (_, record) => (
                 <>
                     {
-                        tags === '還錢' ? <>
+                        record.tags === '還款' ? <>
                             <Tag color={'volcano'}>
-                                {tags}
+                                {record.tags}
                             </Tag>
                         </> : <>
                             <Tag color={'geekblue'}>
-                                {tags}
+                                {record.tags}
                             </Tag>
                         </>
                     }
@@ -104,21 +90,13 @@ const DebtInformation = () => {
             title: '日期',
             dataIndex: 'date',
             key: 'date',
-            render: (_, record) => (
-                <>
-                    <a style={{ color: 'black' }}>05/01</a>
-                </>
-            ),
+
         },
         {
             title: '備註',
             dataIndex: 'note',
             key: 'note',
-            render: (_, record) => (
-                <>
-                    <a style={{ color: 'black' }}>麻辣燙的錢</a>
-                </>
-            ),
+
         },
         // {
         //     title: '是否還款',
@@ -131,7 +109,7 @@ const DebtInformation = () => {
             render: (_, record) => (
                 <>
                     <Space>
-                        <a style={{ color: 'green' }} onClick={e => editItem(record.tags)}>編輯</a>
+                        <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
                         <a style={{ color: 'red' }}>刪除</a>
                     </Space>
                 </>
@@ -141,15 +119,100 @@ const DebtInformation = () => {
         
     ]);
     const [data, setData] = useState([{
-        debt_name: '',
-        back_name: '',
-        money: '',
+        debt_name: 'JACKY',
+        back_name: '軟妹',
+        money: '250',
         tags: '欠款',
-        date: '',
-        note: '',
+        date: '05/01',
+        note: '麻辣燙的錢',
+    }, {
+        debt_name: 'Mingyao',
+        back_name: 'JACKY',
+        money: '250',
+        tags: '還款',
+        date: '06/01',
+        note: '深水的錢',
+    }
+        , {
+        debt_name: 'Mingyao',
+        back_name: 'DAVIS',
+        money: '100',
+        tags: '還款',
+        date: '05/01',
+        note: '加油錢',
+    }, {
+        debt_name: 'YEEDA',
+        back_name: 'JACKY',
+        money: '150',
+        tags: '欠款',
+        date: '05/05',
+        note: '麥片+牛奶',
+    }, {
+        debt_name: '軟妹',
+        back_name: 'MINGYAO',
+        money: '50',
+        tags: '欠款',
+        date: '05/03',
+        note: '軟體之星道具',
+    }, {
+        debt_name: '婷婷',
+        back_name: 'MINGYAO',
+        money: '150',
+        tags: '還款',
+        date: '05/05',
+        note: '披薩',
+    }]);
+    const [data1, setData1] = useState([{
+        debt_name: 'JACKY',
+        back_name: '軟妹',
+        money: '250',
+        tags: '欠款',
+        date: '05/01',
+        note: '麻辣燙的錢',
+    }, {
+        debt_name: 'YEEDA',
+        back_name: 'JACKY',
+        money: '150',
+        tags: '欠款',
+        date: '05/05',
+        note: '麥片+牛奶',
+    }, {
+        debt_name: '軟妹',
+        back_name: 'MINGYAO',
+        money: '50',
+        tags: '欠款',
+        date: '05/03',
+        note: '軟體之星道具',
+    }]);
+    const [data2, setData2] = useState([{
+        debt_name: 'Mingyao',
+        back_name: 'JACKY',
+        money: '250',
+        tags: '還款',
+        date: '06/01',
+        note: '深水的錢'
+    }, {
+        debt_name: '婷婷',
+        back_name: 'MINGYAO',
+        money: '150',
+        tags: '還款',
+        date: '05/05',
+        note: '披薩',
+    }, {
+        debt_name: 'Mingyao',
+        back_name: 'DAVIS',
+        money: '100',
+        tags: '還款',
+        date: '05/01',
+        note: '加油錢',
+    }
         // back: '',
+<<<<<<< HEAD
     },
     ]);
+=======
+        ,]);
+>>>>>>> 319a0c50370e90a2dfa1b62f7ff9b8cbefd0232f
     const addDebt = () => {
         setOpen(true)
         setTitle('新增欠款');
@@ -173,14 +236,16 @@ const DebtInformation = () => {
             content: '新增成功',
         });
     }
-    const editItem = (tag) => {
+    const editItem = (record) => {
+        // setEditCard({});
         setEdit(true);
-        if (tag == '還錢') {
+        if (record.tags == '還款') {
             setTitle('編輯還款');
 
         } else {
             setTitle('編輯欠款');
         }
+        setEditCard(record);
         setOpen(true);
 
     }
@@ -231,7 +296,7 @@ const DebtInformation = () => {
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns} dataSource={data}
+                                                columns={columns} dataSource={data1}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),
@@ -242,7 +307,7 @@ const DebtInformation = () => {
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns} dataSource={data}
+                                                columns={columns} dataSource={data2}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),
