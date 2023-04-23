@@ -50,7 +50,7 @@ const Charts = () => {
                                 children: (<>
                                     <Col span={24}>
                                         <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
-                                            <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠還款情形</Col>
+                                            <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠款情形</Col>
                                             <Col span={12}>
                                                 <Row gutter={[8, 8]}>
                                                     <Col span={24}>
@@ -73,7 +73,7 @@ const Charts = () => {
                                 children: (<>
                                     <Col span={24}>
                                         <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
-                                            <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠還款情形</Col>
+                                            <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月還款情形</Col>
                                             <Col span={12}>
                                                 <Row gutter={[8, 8]}>
                                                     <Col span={24}>
@@ -101,20 +101,133 @@ const Charts = () => {
 }
 export default Charts;
 const DemoColumn = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([
+        {
+            "name": "欠款",
+            "月份": "Jan.",
+            "月均降雨量":200
+          },
+          {
+            "name": "收款",
+            "月份": "Jan.",
+            "月均降雨量":50
+          },
+          {
+            "name": "欠款",
+            "月份": "Feb.",
+            "月均降雨量":250
+          },
+          {
+            "name": "收款",
+            "月份": "Feb.",
+            "月均降雨量":150
+          },
+          {
+            "name": "欠款",
+            "月份": "Mar.",
+            "月均降雨量":100
+          },
+          {
+            "name": "收款",
+            "月份": "Mar.",
+            "月均降雨量":0
+          },
+          {
+            "name": "欠款",
+            "月份": "Apr.",
+            "月均降雨量":150
+          },
+          {
+            "name": "收款",
+            "月份": "Apr.",
+            "月均降雨量":150
+          },
+          {
+            "name": "欠款",
+            "月份": "May",
+            "月均降雨量":100
+          },
+          {
+            "name": "收款",
+            "月份": "May.",
+            "月均降雨量":200
+          },
+          {
+            "name": "欠款",
+            "月份": "Jun.",
+            "月均降雨量":50
+          },
+          {
+            "name": "收款",
+            "月份": "Jun.",
+            "月均降雨量":150
+          },
+          {
+            "name": "欠款",
+            "月份": "Jul.",
+            "月均降雨量":100
+          },
+          {
+            "name": "收款",
+            "月份": "Jul.",
+            "月均降雨量":170
+          },
+          {
+            "name": "欠款",
+            "月份": "Aug.",
+            "月均降雨量":250
+          },
+          {
+            "name": "收款",
+            "月份": "Aug.",
+            "月均降雨量":50
+          },
+          {
+            "name": "欠款",
+            "月份": "Sep.",
+            "月均降雨量":100
+          },
+          {
+            "name": "收款",
+            "月份": "Sep.",
+            "月均降雨量":200
+          },
+          {
+            "name": "欠款",
+            "月份": "Oct.",
+            "月均降雨量":180
+          },
+          {
+            "name": "收款",
+            "月份": "Oct.",
+            "月均降雨量":130
+          },
+          {
+            "name": "欠款",
+            "月份": "Nov.",
+            "月均降雨量":190
+          },
+          {
+            "name": "收款",
+            "月份": "Nov.",
+            "月均降雨量":150
+          },
+          {
+            "name": "欠款",
+            "月份": "Dec.",
+            "月均降雨量":50
+          },
+          
+          {
+            "name": "收款",
+            "月份": "Dec.",
+            "月均降雨量":150
+          },
+          
+    ]);
+    
 
-    useEffect(() => {
-        asyncFetch();
-    }, []);
-
-    const asyncFetch = () => {
-        fetch('https://gw.alipayobjects.com/os/antfincdn/iPY8JFnxdb/dodge-padding.json')
-            .then((response) => response.json())
-            .then((json) => setData(json))
-            .catch((error) => {
-                console.log('fetch data failed', error);
-            });
-    };
+    
     const config = {
         data,
         isGroup: true,
