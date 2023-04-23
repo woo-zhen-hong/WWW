@@ -138,6 +138,7 @@ const DebtInformation = () => {
 
             ),
         },
+        
     ]);
     const [data, setData] = useState([{
         debt_name: '',
@@ -147,7 +148,8 @@ const DebtInformation = () => {
         date: '',
         note: '',
         // back: '',
-    },]);
+    },
+    ]);
     const addDebt = () => {
         setOpen(true)
         setTitle('新增欠款');
