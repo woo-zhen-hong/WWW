@@ -55,7 +55,7 @@ const DebtInformation = () => {
             key: 'debt_name',
         },
         {
-            title: '還款人',
+            title: '收款人',
             dataIndex: 'back_name',
             key: 'back_name',
 
@@ -134,20 +134,20 @@ const DebtInformation = () => {
     }
         , {
         debt_name: 'Mingyao',
-        back_name: 'DAVIS',
+        back_name: 'JACKY',
         money: '100',
         tags: '還款',
         date: '05/01',
         note: '加油錢',
     }, {
-        debt_name: 'YEEDA',
-        back_name: 'JACKY',
+        debt_name: 'JACKY',
+        back_name: 'YEEDA',
         money: '150',
         tags: '欠款',
         date: '05/05',
         note: '麥片+牛奶',
     }, {
-        debt_name: '軟妹',
+        debt_name: 'JACKY',
         back_name: 'MINGYAO',
         money: '50',
         tags: '欠款',
@@ -155,7 +155,7 @@ const DebtInformation = () => {
         note: '軟體之星道具',
     }, {
         debt_name: '婷婷',
-        back_name: 'MINGYAO',
+        back_name: 'JACKY',
         money: '150',
         tags: '還款',
         date: '05/05',
@@ -169,14 +169,14 @@ const DebtInformation = () => {
         date: '05/01',
         note: '麻辣燙的錢',
     }, {
-        debt_name: 'YEEDA',
-        back_name: 'JACKY',
+        debt_name: 'JACKY',
+        back_name: 'YEEDA',
         money: '150',
         tags: '欠款',
         date: '05/05',
         note: '麥片+牛奶',
     }, {
-        debt_name: '軟妹',
+        debt_name: 'JACKY',
         back_name: 'MINGYAO',
         money: '50',
         tags: '欠款',
@@ -192,14 +192,14 @@ const DebtInformation = () => {
         note: '深水的錢'
     }, {
         debt_name: '婷婷',
-        back_name: 'MINGYAO',
+        back_name: 'JACKY',
         money: '150',
         tags: '還款',
         date: '05/05',
         note: '披薩',
     }, {
         debt_name: 'Mingyao',
-        back_name: 'DAVIS',
+        back_name: 'JACKY',
         money: '100',
         tags: '還款',
         date: '05/01',
@@ -263,7 +263,7 @@ const DebtInformation = () => {
                         <Col>
                             <Row gutter={[8, 8]}>
                                 <Col><Button className='btn' style={{ backgroundColor: '#7DAAFF', color: 'white' }} onClick={addDebt}>新增欠款</Button></Col>
-                                <Col><Button className='btn' style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={addBack}>新增還款</Button></Col>
+                                <Col><Button className='btn' style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={addBack}>新增收款</Button></Col>
                             </Row>
                         </Col>
                         <Col span={24}>
@@ -296,7 +296,7 @@ const DebtInformation = () => {
                                     </>),
                                 }, {
                                     key: 3,
-                                    label: '還款資訊',
+                                    label: '收款資訊',
                                     children: (<>
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
