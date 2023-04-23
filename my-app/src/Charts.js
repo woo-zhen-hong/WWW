@@ -3,6 +3,43 @@ import { Tabs, Upload, Layout, Modal, Row, Col, Button, DatePicker, Radio, Card,
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
 import { Column, Pie, DualAxes } from '@ant-design/plots';
+import styled from 'styled-components';
+const CustomTabs = styled.div`
+    .ant-tabs-tab{
+        color: #bbb;
+        font-size :1rem;
+        font-weight: 400;
+        border-radius: 10px;
+        // background-color: #D9B3B3;
+        background: linear-gradient(-60deg, transparent 20px, white 0) right,
+        linear-gradient(120deg, transparent 20px, white 0) left;
+        background-color: transparent;
+    }
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab-active{
+        font-size :1.5rem;
+        font-weight: 700;
+        background-color: #A6B3D2 !important;
+
+    }
+    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab{
+      padding:10px;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+      color:#FFFFFF;
+    }
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab{
+    //   background:#FFF4C1;
+      font-size :1rem;
+    }
+    .ant-tabs-tab:hover {
+        color: #gray;
+        background: #FFF
+        transform:scale(1.2)
+    }
+    .ant-tabs-tab-btn:focus, .ant-tabs-tab-remove:focus, .ant-tabs-tab-btn:active, .ant-tabs-tab-remove:active {
+        color: #FFF;
+    }
+`;
 const data = [
     { type: '分类一', value: 27 },
     { type: '分类二', value: 25 },
@@ -14,88 +51,90 @@ const data = [
 const Charts = () => {
     return (
         <>
-            <Col apn={24}>
-                <Row gutter={[8, 8]} justify={'end'}>
-                    <Col span={24} style={{ fontSize: '2rem' }}>數據化圖表</Col>
-                    <Col span={24}>
-                        <Tabs
-                            // onChange={onChange}
-                            type="card"
-                            items={[{
-                                key: 1,
-                                label: '全部',
-                                children: (<>
-                                    <Col span={24}>
-                                        <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
-                                            <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠還款情形</Col>
-                                            <Col span={12}>
-                                                <Row gutter={[8, 8]}>
-                                                    <Col span={24}>
-                                                        <DemoColumn />
-                                                    </Col>
-                                                    <Col span={24}>
-                                                        <DemoDualAxes />
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                            <Col span={12}>
-                                                <DemoPie />
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </>),
-                            }, {
-                                key: 2,
-                                label: '欠款資訊',
-                                children: (<>
-                                    <Col span={24}>
-                                        <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
-                                            <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠款情形</Col>
-                                            <Col span={12}>
-                                                <Row gutter={[8, 8]}>
-                                                    <Col span={24}>
-                                                        <DemoColumn />
-                                                    </Col>
-                                                    <Col span={24}>
-                                                        <DemoDualAxes />
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                            <Col span={12}>
-                                                <DemoPie />
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </>),
-                            }, {
-                                key: 3,
-                                label: '還款資訊',
-                                children: (<>
-                                    <Col span={24}>
-                                        <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
-                                            <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月還款情形</Col>
-                                            <Col span={12}>
-                                                <Row gutter={[8, 8]}>
-                                                    <Col span={24}>
-                                                        <DemoColumn />
-                                                    </Col>
-                                                    <Col span={24}>
-                                                        <DemoDualAxes />
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                            <Col span={12}>
-                                                <DemoPie />
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </>),
-                            }]}
-                        />
-                    </Col>
-                </Row>
+            <CustomTabs>
+                <Col apn={24}>
+                    <Row gutter={[8, 8]} justify={'end'}>
+                        <Col span={24} style={{ fontSize: '2rem' }}>數據化圖表</Col>
+                        <Col span={24}>
+                            <Tabs
+                                // onChange={onChange}
+                                type="card"
+                                items={[{
+                                    key: 1,
+                                    label: '全部',
+                                    children: (<>
+                                        <Col span={24}>
+                                            <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
+                                                <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠還款情形</Col>
+                                                <Col span={12}>
+                                                    <Row gutter={[8, 8]}>
+                                                        <Col span={24}>
+                                                            <DemoColumn />
+                                                        </Col>
+                                                        <Col span={24}>
+                                                            <DemoDualAxes />
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                                <Col span={12}>
+                                                    <DemoPie />
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </>),
+                                }, {
+                                    key: 2,
+                                    label: '欠款資訊',
+                                    children: (<>
+                                        <Col span={24}>
+                                            <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
+                                                <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠款情形</Col>
+                                                <Col span={12}>
+                                                    <Row gutter={[8, 8]}>
+                                                        <Col span={24}>
+                                                            <DemoColumn />
+                                                        </Col>
+                                                        <Col span={24}>
+                                                            <DemoDualAxes />
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                                <Col span={12}>
+                                                    <DemoPie />
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </>),
+                                }, {
+                                    key: 3,
+                                    label: '還款資訊',
+                                    children: (<>
+                                        <Col span={24}>
+                                            <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
+                                                <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月還款情形</Col>
+                                                <Col span={12}>
+                                                    <Row gutter={[8, 8]}>
+                                                        <Col span={24}>
+                                                            <DemoColumn />
+                                                        </Col>
+                                                        <Col span={24}>
+                                                            <DemoDualAxes />
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                                <Col span={12}>
+                                                    <DemoPie />
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </>),
+                                }]}
+                            />
+                        </Col>
+                    </Row>
 
-            </Col>
+                </Col>
+            </CustomTabs>
         </>
     )
 }
@@ -105,147 +144,154 @@ const DemoColumn = () => {
         {
             "name": "欠款",
             "月份": "Jan.",
-            "月均降雨量":200
-          },
-          {
+            "月均降雨量": 200
+        },
+        {
             "name": "收款",
             "月份": "Jan.",
-            "月均降雨量":50
-          },
-          {
+            "月均降雨量": 50
+        },
+        {
             "name": "欠款",
             "月份": "Feb.",
-            "月均降雨量":250
-          },
-          {
+            "月均降雨量": 250
+        },
+        {
             "name": "收款",
             "月份": "Feb.",
-            "月均降雨量":150
-          },
-          {
+            "月均降雨量": 150
+        },
+        {
             "name": "欠款",
             "月份": "Mar.",
-            "月均降雨量":100
-          },
-          {
+            "月均降雨量": 100
+        },
+        {
             "name": "收款",
             "月份": "Mar.",
-            "月均降雨量":0
-          },
-          {
+            "月均降雨量": 0
+        },
+        {
             "name": "欠款",
             "月份": "Apr.",
-            "月均降雨量":150
-          },
-          {
+            "月均降雨量": 150
+        },
+        {
             "name": "收款",
             "月份": "Apr.",
-            "月均降雨量":150
-          },
-          {
+            "月均降雨量": 150
+        },
+        {
             "name": "欠款",
+<<<<<<< HEAD
             "月份": "May.",
             "月均降雨量":100
           },
           {
+=======
+            "月份": "May",
+            "月均降雨量": 100
+        },
+        {
+>>>>>>> origin/master
             "name": "收款",
             "月份": "May.",
-            "月均降雨量":200
-          },
-          {
+            "月均降雨量": 200
+        },
+        {
             "name": "欠款",
             "月份": "Jun.",
-            "月均降雨量":50
-          },
-          {
+            "月均降雨量": 50
+        },
+        {
             "name": "收款",
             "月份": "Jun.",
-            "月均降雨量":150
-          },
-          {
+            "月均降雨量": 150
+        },
+        {
             "name": "欠款",
             "月份": "Jul.",
-            "月均降雨量":100
-          },
-          {
+            "月均降雨量": 100
+        },
+        {
             "name": "收款",
             "月份": "Jul.",
-            "月均降雨量":170
-          },
-          {
+            "月均降雨量": 170
+        },
+        {
             "name": "欠款",
             "月份": "Aug.",
-            "月均降雨量":250
-          },
-          {
+            "月均降雨量": 250
+        },
+        {
             "name": "收款",
             "月份": "Aug.",
-            "月均降雨量":50
-          },
-          {
+            "月均降雨量": 50
+        },
+        {
             "name": "欠款",
             "月份": "Sep.",
-            "月均降雨量":100
-          },
-          {
+            "月均降雨量": 100
+        },
+        {
             "name": "收款",
             "月份": "Sep.",
-            "月均降雨量":200
-          },
-          {
+            "月均降雨量": 200
+        },
+        {
             "name": "欠款",
             "月份": "Oct.",
-            "月均降雨量":180
-          },
-          {
+            "月均降雨量": 180
+        },
+        {
             "name": "收款",
             "月份": "Oct.",
-            "月均降雨量":130
-          },
-          {
+            "月均降雨量": 130
+        },
+        {
             "name": "欠款",
             "月份": "Nov.",
-            "月均降雨量":190
-          },
-          {
+            "月均降雨量": 190
+        },
+        {
             "name": "收款",
             "月份": "Nov.",
-            "月均降雨量":150
-          },
-          {
+            "月均降雨量": 150
+        },
+        {
             "name": "欠款",
             "月份": "Dec.",
-            "月均降雨量":50
-          },
-          
-          {
-            "name": "收款",
-            "月份": "Dec.",
-            "月均降雨量":150
-          },
-          
-    ]);
-    
+            "月均降雨量": 50
+        },
 
-    
+        {
+            "name": "收款",
+            "月份": "Dec.",
+            "月均降雨量": 150
+        },
+
+    ]);
+
+
+
     const config = {
         data,
         isGroup: true,
         xField: '月份',
         yField: '月均降雨量',
         seriesField: 'name',
-        
+
         dodgePadding: 2,
         label: {
             position: 'middle',
             layout: [
-                
+
                 {
                     type: 'interval-adjust-position',
-                }, 
+                },
                 {
                     type: 'interval-hide-overlap',
-                }, 
+                },
                 {
                     type: 'adjust-color',
                 },
@@ -286,19 +332,19 @@ const DemoPie = () => {
         {
             type: '七月',
             value: 2,
-        },{
+        }, {
             type: '八月',
             value: 5,
-        },{
+        }, {
             type: '九月',
             value: 0,
-        },{
+        }, {
             type: '十月',
             value: 1,
-        },{
+        }, {
             type: '十一月',
             value: 2,
-        },{
+        }, {
             type: '十二月',
             value: 3,
         },
