@@ -90,7 +90,7 @@ const Login = () => {
                                     <Form.Item>
                                         <Row gutter={[24, 16]} justify={'center'}>
                                             <Col>
-                                                <Button htmlType="submit"
+                                                <Button className='btn' htmlType="submit"
                                                     size='large'
                                                     style={{ backgroundColor: '#B3B9F0' }}
                                                     onClick={() => {
@@ -110,7 +110,7 @@ const Login = () => {
                                                 </Button>
                                             </Col>
                                             <Col>
-                                                <Button htmlType="submit"
+                                                <Button className='btn' htmlType="submit"
                                                     size='large'
                                                     style={{ backgroundColor: '#B3B9F0' }}
                                                     onClick={e => navigate('/Register')}
@@ -120,6 +120,7 @@ const Login = () => {
                                             </Col>
                                             <Col>
                                                 <Button
+                                                    className='btn'
                                                     size='large'
                                                     style={{ backgroundColor: 'white' }}>以GMAIL方式登入</Button></Col>
                                         </Row>

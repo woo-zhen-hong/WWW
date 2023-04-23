@@ -132,7 +132,7 @@ const Friends = () => {
                                     </Row>
                                 </Col>
                                 <Col>
-                                    <Button style={{ backgroundColor: '#D7F5FF' }} onClick={e => addfriend()}>加為好友</Button>
+                                    <Button className='btn' style={{ backgroundColor: '#D7F5FF' }} onClick={e => addfriend()}>加為好友</Button>
                                 </Col>
                             </> : null}
                         </Row>
@@ -143,7 +143,7 @@ const Friends = () => {
             <Col span={24}>
                 <Row gutter={[16, 40]} justify={'space-between'} align={'middle'}>
                     <Col style={{ fontSize: '2rem', fontWeight: 400 }}>查看好友</Col>
-                    <Col><Button size='large' style={{ backgroundColor: '#8BA8E0' }} icon={<PlusOutlined />} onClick={e => setModalOpen(true)}>新增好友</Button></Col>
+                    <Col><Button className='btn' size='large' style={{ backgroundColor: '#8BA8E0' }} icon={<PlusOutlined />} onClick={e => setModalOpen(true)}>新增好友</Button></Col>
                     <Col span={24}>
                         <Table columns={columns} dataSource={data} pagination={false} />
                     </Col>

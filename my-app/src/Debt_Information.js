@@ -2,41 +2,43 @@ import React, { useEffect, useState } from 'react';
 import { Tabs, Tag, Table, Modal, Row, Col, Button, message, Radio, Card, Input, Popconfirm, Checkbox, Switch, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
 import MainModal from './MainModal';
-const InputOutline = styled.div`
-    .ant-select-focused .ant-select-selector,
-    .ant-select-selector:focus,
-    .ant-select-selector:active,
-    .ant-select-open .ant-select-selector {
-    border-color: #d9d9d9 !important;
-    box-shadow: none !important;
+import styled from 'styled-components';
+import './App.css';
+const CustomTabs = styled.div`
+    .ant-tabs-tab{
+        color: #bbb;
+        font-size :1rem;
+        font-weight: 400;
+        border-radius: 10px;
+        // background-color: #D9B3B3;
+        background: linear-gradient(-60deg, transparent 20px, white 0) right,
+        linear-gradient(120deg, transparent 20px, white 0) left;
+        background-color: transparent;
     }
-    .ant-input{
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: groove;
-        border-radius:0px;
-        background-color:#f5f5f5;
-        border-width:2px
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab-active{
+        font-size :1.5rem;
+        font-weight: 700;
+        background-color: #A6B3D2 !important;
+
     }
-    .ant-select-selector{
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: groove;
-        border-radius:0px;
-        background-color:#f5f5f5;
+    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab{
+      padding:10px;
     }
-    .ant-input-status-error{
-        border-top-style: hidden;
-        border-right-style: hidden;
-        border-left-style: hidden;
-        border-bottom-style: groove;
-        border-radius:0px;
-        background-color:#f5f5f5;
-        border-width:5px;
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+      color:#FFFFFF;
+    }
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab{
+    //   background:#FFF4C1;
+      font-size :1rem;
+    }
+    .ant-tabs-tab:hover {
+        color: #gray;
+        background: #FFF
+        transform:scale(1.2)
+    }
+    .ant-tabs-tab-btn:focus, .ant-tabs-tab-remove:focus, .ant-tabs-tab-btn:active, .ant-tabs-tab-remove:active {
+        color: #FFF;
     }
 `;
 const DebtInformation = () => {
@@ -156,7 +158,11 @@ const DebtInformation = () => {
 
     }
     const handleEdit = () => {
-
+        setOpen(false);
+        messageApi.open({
+            type: 'success',
+            content: '更新成功',
+        });
     }
     const handleSubmit = () => {
         setOpen(false);
@@ -179,74 +185,74 @@ const DebtInformation = () => {
     return (
         <>
             {contextHolder}
-            <MainModal
-                open={open}
-                setOpen={setOpen}
-                title={title}
-                handleSubmit={handleSubmit}
-                handleEdit={handleEdit}
-                edit={edit}
-                editcard={editcard}
-                setEditCard={setEditCard}
-            />
-            <Col apn={24}>
-                <Row gutter={[8, 8]} justify={'end'}>
-                    <Col span={24} style={{ fontSize: '2rem' }}>瀏覽債務資訊</Col>
-                    <Col>
-                        <Row gutter={[8, 8]}>
-                            <Col><Button style={{ backgroundColor: '#7DAAFF', color: 'white' }} onClick={addDebt}>新增欠款</Button></Col>
-                            <Col><Button style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={addBack}>新增還款</Button></Col>
-                        </Row>
-                    </Col>
-                    <Col span={24}>
-                        <Tabs
-                            type="card"
-                            // onChange={key => setActivety(key)}
-                            // defaultActiveKey={1}
-                            // activeKey={activeKey}
-                            items={[{
-                                key: 1,
-                                label: '全部',
-                                children: (<>
-                                    <Col span={24}>
-                                        <Table tableLayout={'fixed'}
-                                            scroll={{ x: 'max-content' }}
-                                            columns={columns} dataSource={data}
-                                            pagination={false}></Table>
-                                    </Col>
-                                </>),
-                            }, {
-                                key: 2,
-                                label: '欠款資訊',
-                                children: (<>
-                                    <Col span={24}>
-                                        <Table tableLayout={'fixed'}
-                                            scroll={{ x: 'max-content' }}
-                                            columns={columns} dataSource={data}
-                                            pagination={false}></Table>
-                                    </Col>
-                                </>),
-                            }, {
-                                key: 3,
-                                label: '還款資訊',
-                                children: (<>
-                                    <Col span={24}>
-                                        <Table tableLayout={'fixed'}
-                                            scroll={{ x: 'max-content' }}
-                                            columns={columns} dataSource={data}
-                                            pagination={false}></Table>
-                                    </Col>
-                                </>),
-                            }]}
-                        />
-                    </Col>
-                    <Col style={{ paddingTop: '20px' }}>
-                        <img src='./nomoney.png'></img>
-                    </Col>
-                </Row>
-
-            </Col>
-
+            <CustomTabs>
+                <MainModal
+                    open={open}
+                    setOpen={setOpen}
+                    title={title}
+                    handleSubmit={handleSubmit}
+                    handleEdit={handleEdit}
+                    edit={edit}
+                    editcard={editcard}
+                    setEditCard={setEditCard}
+                />
+                <Col apn={24}>
+                    <Row gutter={[8, 8]} justify={'end'}>
+                        <Col span={24} style={{ fontSize: '2rem' }}>瀏覽債務資訊</Col>
+                        <Col>
+                            <Row gutter={[8, 8]}>
+                                <Col><Button className='btn' style={{ backgroundColor: '#7DAAFF', color: 'white' }} onClick={addDebt}>新增欠款</Button></Col>
+                                <Col><Button className='btn' style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={addBack}>新增還款</Button></Col>
+                            </Row>
+                        </Col>
+                        <Col span={24}>
+                            <Tabs
+                                type="card"
+                                // onChange={key => setActivety(key)}
+                                // defaultActiveKey={1}
+                                // activeKey={activeKey}
+                                items={[{
+                                    key: 1,
+                                    label: '全部',
+                                    children: (<>
+                                        <Col span={24}>
+                                            <Table tableLayout={'fixed'}
+                                                scroll={{ x: 'max-content' }}
+                                                columns={columns} dataSource={data}
+                                                pagination={false}></Table>
+                                        </Col>
+                                    </>),
+                                }, {
+                                    key: 2,
+                                    label: '欠款資訊',
+                                    children: (<>
+                                        <Col span={24}>
+                                            <Table tableLayout={'fixed'}
+                                                scroll={{ x: 'max-content' }}
+                                                columns={columns} dataSource={data}
+                                                pagination={false}></Table>
+                                        </Col>
+                                    </>),
+                                }, {
+                                    key: 3,
+                                    label: '還款資訊',
+                                    children: (<>
+                                        <Col span={24}>
+                                            <Table tableLayout={'fixed'}
+                                                scroll={{ x: 'max-content' }}
+                                                columns={columns} dataSource={data}
+                                                pagination={false}></Table>
+                                        </Col>
+                                    </>),
+                                }]}
+                            />
+                        </Col>
+                        <Col style={{ paddingTop: '20px' }}>
+                            <img src='./nomoney.png'></img>
+                        </Col>
+                    </Row>
+                </Col>
+            </CustomTabs>
         </>
     )
 }
