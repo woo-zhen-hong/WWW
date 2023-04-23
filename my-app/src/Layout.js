@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { List, Avatar, Layout, Menu, Row, Col, Drawer, Badge, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
+import { List, Avatar, Layout, Menu, Row, Col, Drawer, Badge, Button, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { BellOutlined, MenuOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
 const { Header, Footer, Sider, Content } = Layout;
+const Outline = styled.div`
+    .ant-menu-light .ant-menu-item-selected, :where(.css-dev-only-do-not-override-1fviqcj)
+    .ant-menu-light>.ant-menu .ant-menu-item-selected{
+        background-color:#5574A9;
+        color:white;
+    }
+`;
 const MainOutlet = () => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -77,94 +85,104 @@ const MainOutlet = () => {
     ];
     return (
         <>
-            <Layout className="layout" >
-                <Header style={{ backgroundColor: '#A6B3D2', position: 'relative' }}>
-                    {dimensions['width'] > 500 ? <>
-                        <Row justify={'center'} >
-                            <Col >
-                                <Menu
-                                    theme="light"
-                                    mode="horizontal"
-                                    defaultSelectedKeys={['/cramSchool']}
-                                    selectedKeys={selecte_keys}
-                                    onSelect={onSelect}
-                                    right
-                                    disabledOverflow
-                                    items={item}
-                                    style={{ backgroundColor: '#A6B3D2' }}
-                                />
-                            </Col>
-                            <Col style={{ position: 'absolute', right: '20px', top: '5px' }}>
-                                <Badge count={5} size='small'>
-                                    <BellOutlined style={{ fontSize: '30px', cursor: 'pointer' }} onClick={e => setOpen(true)} />
-                                </Badge>
-                                <Drawer title="訊息通知" placement="right" onClose={e => setOpen(false)} open={open}>
-                                    <List
-                                        itemLayout="horizontal"
-                                        dataSource={data}
-                                        renderItem={(item, index) => (
-                                            <List.Item>
-                                                <List.Item.Meta
-                                                    avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
-                                                    title={<a href="https://ant.design">{item.title}</a>}
-                                                    description={item.content}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Drawer>
-                            </Col>
-                        </Row>
-                    </> :
-                        <>
-                            <Row justify={'end'}>
+            <Outline>
+                <Layout className="layout" >
+                    <Header style={{ backgroundColor: '#A6B3D2', position: 'relative' }}>
+                        {dimensions['width'] > 500 ? <>
+                            <Row justify={'center'} >
                                 <Col >
-                                    <MenuOutlined
-                                        onClick={e => { setCollapsed(!collapsed) }}
-                                        style={{
-                                            marginBottom: 16,
-                                            cursor: 'pointer'
-                                        }} />
+                                    <Menu
+                                        theme="light"
+                                        mode="horizontal"
+                                        defaultSelectedKeys={['/cramSchool']}
+                                        selectedKeys={selecte_keys}
+                                        onSelect={onSelect}
+                                        right
+                                        disabledOverflow
+                                        items={item}
+                                        style={{ backgroundColor: '#A6B3D2', fontSize: '1.2rem' }}
+                                    />
+                                </Col>
+                                <Col style={{ position: 'absolute', right: '20px', top: '5px' }}>
+                                    <Row gutter={[8, 8]} align={'top'}>
+                                        <Col>
+                                            <Button className='btn' onClick={e => navigate('/')}
+                                                style={{ backgroundColor: '#F0E2FF' }}>登出</Button>
+                                        </Col>
+                                        <Col>
+                                            <Badge count={5} size='small'>
+                                                <BellOutlined style={{ fontSize: '30px', cursor: 'pointer' }} onClick={e => setOpen(true)} />
+                                            </Badge>
+                                        </Col>
+                                    </Row>
+                                    <Drawer title="訊息通知" placement="right" onClose={e => setOpen(false)} open={open}>
+                                        <List
+                                            itemLayout="horizontal"
+                                            dataSource={data}
+                                            renderItem={(item, index) => (
+                                                <List.Item>
+                                                    <List.Item.Meta
+                                                        avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
+                                                        title={<a href="https://ant.design">{item.title}</a>}
+                                                        description={item.content}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Drawer>
                                 </Col>
                             </Row>
-                        </>}
-                </Header>
-                <Content
-                    style={{
-                        padding: '30px 50px',
-                        fontSize: "18px",
-                        // background: '#f5f5f5'
-                        background: '#D7F5FF',
-                        minHeight: '85vh'
-                    }}
-                >
-                    {/* {dimensions['width'] <= 1200 ?
-                        <> */}
-                    {collapsed && (<Menu
-                        mode="inline"
-                        defaultSelectedKeys={['/']}
-                        selectedKeys={selecte_keys}
-                        onClick={onSelect}
-                        items={item}
+                        </> :
+                            <>
+                                <Row justify={'end'}>
+                                    <Col >
+                                        <MenuOutlined
+                                            onClick={e => { setCollapsed(!collapsed) }}
+                                            style={{
+                                                marginBottom: 16,
+                                                cursor: 'pointer'
+                                            }} />
+                                    </Col>
+                                </Row>
+                            </>}
+                    </Header>
+                    <Content
                         style={{
-                            whiteSpace: 'nowrap',
-                            width: '100%',
-                            textAlign: 'center',
-                            background: '#D7F5FF'
+                            padding: '30px 50px',
+                            fontSize: "18px",
+                            // background: '#f5f5f5'
+                            background: '#D7F5FF',
+                            minHeight: '85vh'
                         }}
-                    />)}
-                    <Col span={24}>
-                        <Outlet />
-                    </Col>
-                </Content>
-                <Footer
-                    style={{
-                        textAlign: 'center',
-                    }}
-                >
-                    Create by NKNU
-                </Footer >
-            </Layout >
+                    >
+                        {/* {dimensions['width'] <= 1200 ?
+                        <> */}
+                        {collapsed && (<Menu
+                            mode="inline"
+                            defaultSelectedKeys={['/']}
+                            selectedKeys={selecte_keys}
+                            onClick={onSelect}
+                            items={item}
+                            style={{
+                                whiteSpace: 'nowrap',
+                                width: '100%',
+                                textAlign: 'center',
+                                background: '#D7F5FF'
+                            }}
+                        />)}
+                        <Col span={24}>
+                            <Outlet />
+                        </Col>
+                    </Content>
+                    <Footer
+                        style={{
+                            textAlign: 'center',
+                        }}
+                    >
+                        Create by NKNU
+                    </Footer >
+                </Layout >
+            </Outline>
         </>
     )
 }

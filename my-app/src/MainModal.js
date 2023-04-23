@@ -100,12 +100,13 @@ const MainModal = (props) => {
                                             <Row gutter={[10, 10]} align="bottom" justify={"center"}>
                                                 <Col >
                                                     <Button
+                                                        className='btn'
                                                         onClick={e => { props.edit ? props.handleEdit() : props.handleSubmit() }}
                                                         size='large' style={{ background: '#D7F5FF', color: 'black' }} block
                                                     >{props.edit ? '更新' : '送出'}</Button>
                                                 </Col>
                                                 <Col>
-                                                    <Button size='large' style={{ background: '#D9D9D9', color: 'black' }} onClick={(e) => props.setOpen(false)} block>取消</Button>
+                                                    <Button className='btn' size='large' style={{ background: '#D9D9D9', color: 'black' }} onClick={(e) => props.setOpen(false)} block>取消</Button>
                                                 </Col>
                                             </Row>
                                         </Affix>

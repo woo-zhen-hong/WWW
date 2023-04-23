@@ -24,96 +24,13 @@ const ForgetPassword = () => {
                         <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
                             <Col md={{ span: 10 }} sm={{ span: 24 }}>
                                 <Row gutter={[16, 24]} justify={'center'} align={'middle'}>
-                                    {/* <Form
-                                    // form={form}
-                                    onFinish={(values) => {
-                                        console.log(values)
-                                    }}
-                                    wrapperCol={{
-                                        span: 18
-                                    }}
-                                    labelCol={{
-                                        span: 6
-                                    }}
-                                >
-                                    <Form.Item
-                                        name={'account'}
-                                        // label={'帳號'}
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: '請記得填寫電子郵件喔'
-                                            }
-                                        ]}
-                                    >
-                                        <Row gutter={[8, 16]}>
-                                            <Input placeholder='請輸入您的電子郵件' />
-                                            <Col >
-                                                <Button htmlType="submit"
-                                                    style={{ backgroundColor: '#B3B9F0' }}
-                                                // onClick={e => navigate('/Register')}
-                                                >
-                                                    傳送驗證碼至電子郵件
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                    </Form.Item>
-                                    <Form.Item
-                                        name={'password'}
-                                        // label={'驗證碼'}
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: '請記得填寫驗證碼喔'
-                                            }
-                                        ]}
-                                    >
-                                        <Row gutter={10} align={'middle'}>
-                                            <Col span={6}>
-                                                <Input placeholder='驗證碼' />
-                                            </Col>
-
-                                            <Col>
-                                                <Button htmlType="submit"
-                                                    style={{ backgroundColor: '#B3B9F0' }}
-                                                    onClick={e => navigate(-1)}
-                                                >
-                                                    驗證驗證碼
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                    </Form.Item>
-                                    <Form.Item>
-                                        <Row gutter={[24, 16]} justify={'center'}>
-                                            <Col>
-                                                <Button htmlType="submit"
-                                                    size='large'
-                                                    style={{ backgroundColor: '#B3B9F0' }}
-                                                    onClick={e => navigate(-1)}
-                                                >
-                                                    確認
-                                                </Button>
-                                            </Col>
-                                            <Col>
-                                                <Button htmlType="submit"
-                                                    size='large'
-                                                    style={{ backgroundColor: '#B3B9F0' }}
-                                                    onClick={e => navigate(-1)}
-                                                >
-                                                    返回登入
-                                                </Button>
-                                            </Col>
-                                        </Row>
-
-                                    </Form.Item>
-                                </Form> */}
                                     <Col span={22}>
                                         <Row gutter={[10, 10]}>
                                             <Col>
                                                 <Input placeholder='請輸入您的電子郵件' />
                                             </Col>
                                             <Col>
-                                                <Button htmlType="submit"
+                                                <Button className='btn' htmlType="submit"
                                                     style={{ backgroundColor: '#B3B9F0' }}
                                                 // onClick={e => navigate('/Register')}
                                                 >
@@ -129,7 +46,7 @@ const ForgetPassword = () => {
                                             </Col>
 
                                             <Col>
-                                                <Button htmlType="submit"
+                                                <Button className='btn' htmlType="submit"
                                                     style={{ backgroundColor: '#B3B9F0' }}
                                                     onClick={e => setSuccess(true)}
                                                 >
@@ -178,7 +95,7 @@ const ForgetPassword = () => {
                                             <Form.Item>
                                                 <Row gutter={[24, 16]} justify={'center'}>
                                                     <Col>
-                                                        <Button htmlType="submit"
+                                                        <Button className='btn' htmlType="submit"
                                                             size='large'
                                                             style={{ backgroundColor: '#B3B9F0' }}
                                                         // onClick={() => {

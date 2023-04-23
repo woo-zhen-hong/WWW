@@ -82,7 +82,7 @@ const Register = () => {
                                     <Form.Item>
                                         <Row gutter={[24, 16]} justify={'center'}>
                                             <Col>
-                                                <Button htmlType="submit"
+                                                <Button className='btn' htmlType="submit"
                                                     size='large'
                                                     style={{ backgroundColor: '#B3B9F0' }}
                                                 // onClick={() => {
@@ -100,7 +100,7 @@ const Register = () => {
                                                 </Button>
                                             </Col>
                                             <Col>
-                                                <Button htmlType="submit"
+                                                <Button className='btn' htmlType="submit"
                                                     size='large'
                                                     style={{ backgroundColor: '#B3B9F0' }}
                                                     onClick={e => navigate(-1)}
