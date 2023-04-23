@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Select, Tag, Form, Modal, Row, Col, Button, Affix, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+
 const MainModal = (props) => {
     return (
         <>

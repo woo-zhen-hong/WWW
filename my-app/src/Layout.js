@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Upload, Layout, Menu, Row, Col, Button, Badge, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
+import { List, Avatar, Layout, Menu, Row, Col, Drawer, Badge, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { BellOutlined, MenuOutlined } from '@ant-design/icons';
 const { Header, Footer, Sider, Content } = Layout;
 const MainOutlet = () => {
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const [menu_sider, setMenuSider] = useState([]);
@@ -52,6 +53,28 @@ const MainOutlet = () => {
         setSelectedKeys([window.location.pathname])
         document.title = titles[window.location.pathname]
     }, [window.location.pathname])
+    const data = [
+        {
+            title: 'Jacky Woo',
+            content: '你還有50元沒還Mingyao～～'
+        },
+        {
+            title: 'Mingyao Hoo',
+            content: 'Mingyao已還你500元～～'
+        },
+        {
+            title: '郭台銘',
+            content: '郭台銘已還你5000000元～～'
+        },
+        {
+            title: 'Jacky Woo',
+            content: '你還有520元沒還軟妹妹～～'
+        },
+        {
+            title: 'Jacky Woo',
+            content: '你還有20元沒還yeeda～～'
+        },
+    ];
     return (
         <>
             <Layout className="layout" >
@@ -73,8 +96,23 @@ const MainOutlet = () => {
                             </Col>
                             <Col style={{ position: 'absolute', right: '20px', top: '5px' }}>
                                 <Badge count={5} size='small'>
-                                    <BellOutlined style={{ fontSize: '30px', cursor: 'pointer' }} />
+                                    <BellOutlined style={{ fontSize: '30px', cursor: 'pointer' }} onClick={e => setOpen(true)} />
                                 </Badge>
+                                <Drawer title="訊息通知" placement="right" onClose={e => setOpen(false)} open={open}>
+                                    <List
+                                        itemLayout="horizontal"
+                                        dataSource={data}
+                                        renderItem={(item, index) => (
+                                            <List.Item>
+                                                <List.Item.Meta
+                                                    avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
+                                                    title={<a href="https://ant.design">{item.title}</a>}
+                                                    description={item.content}
+                                                />
+                                            </List.Item>
+                                        )}
+                                    />
+                                </Drawer>
                             </Col>
                         </Row>
                     </> :
