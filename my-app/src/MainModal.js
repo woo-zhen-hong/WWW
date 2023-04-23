@@ -77,14 +77,17 @@ const MainModal = (props) => {
                                             message: '請記得填寫金額喔'
                                         }
                                     ]}
+                                    // initialValue={props.editcard.money}
+
                                 >
-                                    <Input placeholder='請輸入金額' />
+                                    <Input value={props.editcard.money} placeholder='請輸入金額' />
                                 </Form.Item>
                                 <Form.Item
                                     name={'password'}
                                     label={'備註'}
+                                    // initialValue={props.editcard.note}
                                 >
-                                    <Input placeholder='請輸入備註' />
+                                    <Input value={props.editcard.note} placeholder='請輸入備註' />
                                 </Form.Item>
                                 <Form.Item
                                     name={'password'}

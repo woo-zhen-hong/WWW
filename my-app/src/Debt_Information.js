@@ -58,28 +58,28 @@ const DebtInformation = () => {
             title: '還款人',
             dataIndex: 'back_name',
             key: 'back_name',
-            
+
         },
         {
             title: '金額',
             dataIndex: 'money',
             key: 'money',
-           
+
         },
         {
             title: '資訊',
-            key: '還錢',
-            dataIndex: '還錢',
-            render: (_, { tags }) => (
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (_, record) => (
                 <>
                     {
-                        tags === '還錢' ? <>
+                        record.tags === '還款' ? <>
                             <Tag color={'volcano'}>
-                                {tags}
+                                {record.tags}
                             </Tag>
                         </> : <>
                             <Tag color={'geekblue'}>
-                                {tags}
+                                {record.tags}
                             </Tag>
                         </>
                     }
@@ -90,13 +90,13 @@ const DebtInformation = () => {
             title: '日期',
             dataIndex: 'date',
             key: 'date',
-            
+
         },
         {
             title: '備註',
             dataIndex: 'note',
             key: 'note',
-            
+
         },
         // {
         //     title: '是否還款',
@@ -109,7 +109,7 @@ const DebtInformation = () => {
             render: (_, record) => (
                 <>
                     <Space>
-                        <a style={{ color: 'green' }} onClick={e => editItem(record.tags)}>編輯</a>
+                        <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
                         <a style={{ color: 'red' }}>刪除</a>
                     </Space>
                 </>
@@ -124,9 +124,31 @@ const DebtInformation = () => {
         tags: '欠款',
         date: '05/01',
         note: '麻辣燙的錢',
+    }, {
+        debt_name: 'Mingyao',
+        back_name: 'JACKY',
+        money: '250',
+        tags: '還款',
+        date: '06/01',
+        note: '深水的錢',
+    }]);
+    const [data1, setData1] = useState([{
+        debt_name: 'JACKY',
+        back_name: '軟妹',
+        money: '250',
+        tags: '欠款',
+        date: '05/01',
+        note: '麻辣燙的錢',
+    },]);
+    const [data2, setData2] = useState([{
+        debt_name: 'Mingyao',
+        back_name: 'JACKY',
+        money: '250',
+        tags: '還款',
+        date: '06/01',
+        note: '深水的錢',
         // back: '',
     },]);
-    
     const addDebt = () => {
         setOpen(true)
         setTitle('新增欠款');
@@ -150,14 +172,16 @@ const DebtInformation = () => {
             content: '新增成功',
         });
     }
-    const editItem = (tag) => {
+    const editItem = (record) => {
+        // setEditCard({});
         setEdit(true);
-        if (tag == '還錢') {
+        if (record.tags == '還款') {
             setTitle('編輯還款');
 
         } else {
             setTitle('編輯欠款');
         }
+        setEditCard(record);
         setOpen(true);
 
     }
@@ -208,7 +232,7 @@ const DebtInformation = () => {
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns} dataSource={data}
+                                                columns={columns} dataSource={data1}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),
@@ -219,7 +243,7 @@ const DebtInformation = () => {
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns} dataSource={data}
+                                                columns={columns} dataSource={data2}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),
