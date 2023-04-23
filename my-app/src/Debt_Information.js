@@ -51,21 +51,37 @@ const DebtInformation = () => {
             title: '欠款人',
             dataIndex: 'debt_name',
             key: 'debt_name',
+            render: (_, record) => (
+                <>
+                    <a style={{ color: 'black' }}>JACKY</a>
+                </>
+            ),
         },
         {
             title: '還款人',
             dataIndex: 'back_name',
             key: 'back_name',
+            render: (_, record) => (
+                <>
+                    <a style={{ color: 'black' }}>軟妹</a>
+                </>
+                
+            ),
         },
         {
             title: '金額',
             dataIndex: 'money',
             key: 'money',
+            render: (_, record) => (
+                <>
+                    <a style={{ color: 'red' }}>250</a>
+                </>
+            ),
         },
         {
             title: '資訊',
-            key: 'tags',
-            dataIndex: 'tags',
+            key: '還錢',
+            dataIndex: '還錢',
             render: (_, { tags }) => (
                 <>
                     {
@@ -86,11 +102,21 @@ const DebtInformation = () => {
             title: '日期',
             dataIndex: 'date',
             key: 'date',
+            render: (_, record) => (
+                <>
+                    <a style={{ color: 'black' }}>05/01</a>
+                </>
+            ),
         },
         {
             title: '備註',
             dataIndex: 'note',
             key: 'note',
+            render: (_, record) => (
+                <>
+                    <a style={{ color: 'black' }}>麻辣燙的錢</a>
+                </>
+            ),
         },
         // {
         //     title: '是否還款',
@@ -115,7 +141,7 @@ const DebtInformation = () => {
         debt_name: '',
         back_name: '',
         money: '',
-        tags: '',
+        tags: '欠款',
         date: '',
         note: '',
         // back: '',

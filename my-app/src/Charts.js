@@ -121,21 +121,18 @@ const DemoColumn = () => {
         xField: '月份',
         yField: '月均降雨量',
         seriesField: 'name',
-        // 分组柱状图 组内柱子间的间距 (像素级别)
+        
         dodgePadding: 2,
         label: {
-            // 可手动配置 label 数据标签位置
             position: 'middle',
-            // 'top', 'middle', 'bottom'
-            // 可配置附加的布局方法
             layout: [
-                // 柱形图数据标签位置自动调整
+                
                 {
                     type: 'interval-adjust-position',
-                }, // 数据标签防遮挡
+                }, 
                 {
                     type: 'interval-hide-overlap',
-                }, // 数据标签文颜色自动调整
+                }, 
                 {
                     type: 'adjust-color',
                 },
@@ -150,28 +147,47 @@ const DemoColumn = () => {
 const DemoPie = () => {
     const data = [
         {
-            type: '分类一',
-            value: 27,
+            type: '一月',
+            value: 2,
         },
         {
-            type: '分类二',
-            value: 25,
-        },
-        {
-            type: '分类三',
-            value: 18,
-        },
-        {
-            type: '分类四',
-            value: 15,
-        },
-        {
-            type: '分类五',
-            value: 10,
-        },
-        {
-            type: '其他',
+            type: '二月',
             value: 5,
+        },
+        {
+            type: '三月',
+            value: 1,
+        },
+        {
+            type: '四月',
+            value: 1,
+        },
+        {
+            type: '五月',
+            value: 4,
+        },
+        {
+            type: '六月',
+            value: 5,
+        },
+        {
+            type: '七月',
+            value: 2,
+        },{
+            type: '八月',
+            value: 5,
+        },{
+            type: '九月',
+            value: 0,
+        },{
+            type: '十月',
+            value: 1,
+        },{
+            type: '十一月',
+            value: 2,
+        },{
+            type: '十二月',
+            value: 3,
         },
     ];
     const config = {
@@ -215,48 +231,63 @@ const DemoPie = () => {
 const DemoDualAxes = () => {
     const data = [
         {
-            year: '1991',
-            value: 3,
+            year: '01',
+            value: 2,
             count: 10,
         },
         {
-            year: '1992',
-            value: 4,
+            year: '02',
+            value: 5,
             count: 4,
         },
         {
-            year: '1993',
-            value: 3.5,
+            year: '03',
+            value: 1,
             count: 5,
         },
         {
-            year: '1994',
-            value: 5,
+            year: '04',
+            value: 1,
             count: 5,
         },
         {
-            year: '1995',
-            value: 4.9,
+            year: '05',
+            value: 4,
             count: 4.9,
         },
         {
-            year: '1996',
-            value: 6,
+            year: '06',
+            value: 5,
             count: 35,
         },
         {
-            year: '1997',
-            value: 7,
+            year: '07',
+            value: 2,
             count: 7,
         },
         {
-            year: '1998',
-            value: 9,
+            year: '08',
+            value: 5,
             count: 1,
         },
         {
-            year: '1999',
-            value: 13,
+            year: '09',
+            value: 0,
+            count: 20,
+        },
+        {
+            year: '10',
+            value: 1,
+            count: 20,
+        },
+        {
+            year: '11',
+            value: 2,
+            count: 20,
+        },
+        {
+            year: '12',
+            value: 3,
             count: 20,
         },
     ];
