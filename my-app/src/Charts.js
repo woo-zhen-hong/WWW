@@ -144,7 +144,7 @@ const DemoColumn = () => {
           },
           {
             "name": "欠款",
-            "月份": "May",
+            "月份": "May.",
             "月均降雨量":100
           },
           {
@@ -345,69 +345,69 @@ const DemoDualAxes = () => {
     const data = [
         {
             year: '01',
-            value: 2,
-            count: 10,
+            value: 200,
+            count: 50,
         },
         {
             year: '02',
-            value: 5,
-            count: 4,
+            value: 250,
+            count: 150,
         },
         {
             year: '03',
-            value: 1,
-            count: 5,
+            value: 100,
+            count: 0,
         },
         {
             year: '04',
-            value: 1,
-            count: 5,
+            value: 150,
+            count: 150,
         },
         {
             year: '05',
-            value: 4,
-            count: 4.9,
+            value: 100,
+            count: 200,
         },
         {
             year: '06',
-            value: 5,
-            count: 35,
+            value: 50,
+            count: 150,
         },
         {
             year: '07',
-            value: 2,
-            count: 7,
+            value: 100,
+            count: 170,
         },
         {
             year: '08',
-            value: 5,
-            count: 1,
+            value: 250,
+            count: 50,
         },
         {
             year: '09',
-            value: 0,
-            count: 20,
+            value: 100,
+            count: 200,
         },
         {
             year: '10',
-            value: 1,
-            count: 20,
+            value: 180,
+            count: 130,
         },
         {
             year: '11',
-            value: 2,
-            count: 20,
+            value: 190,
+            count: 150,
         },
         {
             year: '12',
-            value: 3,
-            count: 20,
+            value: 50,
+            count: 150,
         },
     ];
     const config = {
         data: [data, data],
         xField: 'year',
-        yField: ['value', 'count'],
+        yField: ['value', 'count0'],
         geometryOptions: [
             {
                 geometry: 'line',
