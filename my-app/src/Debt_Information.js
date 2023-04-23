@@ -131,6 +131,35 @@ const DebtInformation = () => {
         tags: '還款',
         date: '06/01',
         note: '深水的錢',
+    }
+        , {
+        debt_name: 'Mingyao',
+        back_name: 'DAVIS',
+        money: '100',
+        tags: '還款',
+        date: '05/01',
+        note: '加油錢',
+    }, {
+        debt_name: 'YEEDA',
+        back_name: 'JACKY',
+        money: '150',
+        tags: '欠款',
+        date: '05/05',
+        note: '麥片+牛奶',
+    }, {
+        debt_name: '軟妹',
+        back_name: 'MINGYAO',
+        money: '50',
+        tags: '欠款',
+        date: '05/03',
+        note: '軟體之星道具',
+    }, {
+        debt_name: '婷婷',
+        back_name: 'MINGYAO',
+        money: '150',
+        tags: '還款',
+        date: '05/05',
+        note: '披薩',
     }]);
     const [data1, setData1] = useState([{
         debt_name: 'JACKY',
@@ -139,16 +168,45 @@ const DebtInformation = () => {
         tags: '欠款',
         date: '05/01',
         note: '麻辣燙的錢',
-    },]);
+    }, {
+        debt_name: 'YEEDA',
+        back_name: 'JACKY',
+        money: '150',
+        tags: '欠款',
+        date: '05/05',
+        note: '麥片+牛奶',
+    }, {
+        debt_name: '軟妹',
+        back_name: 'MINGYAO',
+        money: '50',
+        tags: '欠款',
+        date: '05/03',
+        note: '軟體之星道具',
+    }]);
     const [data2, setData2] = useState([{
         debt_name: 'Mingyao',
         back_name: 'JACKY',
         money: '250',
         tags: '還款',
         date: '06/01',
-        note: '深水的錢',
+        note: '深水的錢'
+    }, {
+        debt_name: '婷婷',
+        back_name: 'MINGYAO',
+        money: '150',
+        tags: '還款',
+        date: '05/05',
+        note: '披薩',
+    }, {
+        debt_name: 'Mingyao',
+        back_name: 'DAVIS',
+        money: '100',
+        tags: '還款',
+        date: '05/01',
+        note: '加油錢',
+    }
         // back: '',
-    },]);
+        ,]);
     const addDebt = () => {
         setOpen(true)
         setTitle('新增欠款');
