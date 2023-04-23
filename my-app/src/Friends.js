@@ -46,6 +46,13 @@ const Friends = () => {
                     title="確定要刪除好友嗎"
                     okText="確定"
                     cancelText="取消"
+                    onConfirm={e => {
+                        setData(data.filter(item => item.key != record.key));
+                        messageApi.open({
+                            type: 'success',
+                            content: '刪除成功',
+                        });
+                    }}
                 >
                     <a style={{ color: 'red' }}>刪除</a>
 
@@ -53,7 +60,7 @@ const Friends = () => {
             ),
         },
     ];
-    const data = [
+    const [data, setData] = useState([
         {
             key: '1',
             name: 'John Brown',
@@ -72,7 +79,7 @@ const Friends = () => {
             age: 200,
             tags: '還錢',
         },
-    ];
+    ]);
     const onSearch = () => {
         setFriend(true);
     }

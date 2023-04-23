@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Tabs, Upload, Layout, Modal, Row, Col, Button, DatePicker, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
-import { Column, Pie, DualAxes } from '@ant-design/plots';
+import { Column, Pie, Line } from '@ant-design/plots';
 import styled from 'styled-components';
 const CustomTabs = styled.div`
     .ant-tabs-tab{
@@ -41,12 +41,253 @@ const CustomTabs = styled.div`
     }
 `;
 const data = [
-    { type: '分类一', value: 27 },
-    { type: '分类二', value: 25 },
-    { type: '分类三', value: 18 },
-    { type: '分类四', value: 15 },
-    { type: '分类五', value: 10 },
-    { type: '其他', value: 5 },
+    {
+        "name": "欠款",
+        "month": "Jan.",
+        "money": 200
+    },
+    {
+        "name": "收款",
+        "month": "Jan.",
+        "money": 50
+    },
+    {
+        "name": "欠款",
+        "month": "Feb.",
+        "money": 250
+    },
+    {
+        "name": "收款",
+        "month": "Feb.",
+        "money": 150
+    },
+    {
+        "name": "欠款",
+        "month": "Mar.",
+        "money": 100
+    },
+    {
+        "name": "收款",
+        "month": "Mar.",
+        "money": 0
+    },
+    {
+        "name": "欠款",
+        "month": "Apr.",
+        "money": 150
+    },
+    {
+        "name": "收款",
+        "month": "Apr.",
+        "money": 150
+    },
+    {
+        "name": "欠款",
+        "month": "May",
+        "money": 100
+    },
+    {
+        "name": "收款",
+        "month": "May.",
+        "money": 200
+    },
+    {
+        "name": "欠款",
+        "month": "Jun.",
+        "money": 50
+    },
+    {
+        "name": "收款",
+        "month": "Jun.",
+        "money": 150
+    },
+    {
+        "name": "欠款",
+        "month": "Jul.",
+        "money": 100
+    },
+    {
+        "name": "收款",
+        "month": "Jul.",
+        "money": 170
+    },
+    {
+        "name": "欠款",
+        "month": "Aug.",
+        "money": 250
+    },
+    {
+        "name": "收款",
+        "month": "Aug.",
+        "money": 50
+    },
+    {
+        "name": "欠款",
+        "month": "Sep.",
+        "money": 100
+    },
+    {
+        "name": "收款",
+        "month": "Sep.",
+        "money": 200
+    },
+    {
+        "name": "欠款",
+        "month": "Oct.",
+        "money": 180
+    },
+    {
+        "name": "收款",
+        "month": "Oct.",
+        "money": 130
+    },
+    {
+        "name": "欠款",
+        "month": "Nov.",
+        "money": 190
+    },
+    {
+        "name": "收款",
+        "month": "Nov.",
+        "money": 150
+    },
+    {
+        "name": "欠款",
+        "month": "Dec.",
+        "money": 50
+    },
+
+    {
+        "name": "收款",
+        "month": "Dec.",
+        "money": 150
+    },
+
+];
+const data1 = [
+    {
+        "name": "欠款",
+        "month": "Jan.",
+        "money": 200
+    },
+    {
+        "name": "欠款",
+        "month": "Feb.",
+        "money": 250
+    },
+    {
+        "name": "欠款",
+        "month": "Mar.",
+        "money": 100
+    },
+    {
+        "name": "欠款",
+        "month": "Apr.",
+        "money": 150
+    },
+    {
+        "name": "欠款",
+        "month": "May",
+        "money": 100
+    },
+    {
+        "name": "欠款",
+        "month": "Jun.",
+        "money": 50
+    },
+    {
+        "name": "欠款",
+        "month": "Jul.",
+        "money": 100
+    },
+    {
+        "name": "欠款",
+        "month": "Aug.",
+        "money": 250
+    },
+    {
+        "name": "欠款",
+        "month": "Sep.",
+        "money": 100
+    },
+    {
+        "name": "欠款",
+        "month": "Oct.",
+        "money": 180
+    },
+    {
+        "name": "欠款",
+        "month": "Nov.",
+        "money": 190
+    },
+    {
+        "name": "欠款",
+        "month": "Dec.",
+        "money": 50
+    },
+];
+const data2 = [
+    {
+        "name": "收款",
+        "month": "Jan.",
+        "money": 50
+    },
+    {
+        "name": "收款",
+        "month": "Feb.",
+        "money": 150
+    },
+    {
+        "name": "收款",
+        "month": "Mar.",
+        "money": 0
+    },
+    {
+        "name": "收款",
+        "month": "Apr.",
+        "money": 150
+    },
+    {
+        "name": "收款",
+        "month": "May.",
+        "money": 200
+    },
+    {
+        "name": "收款",
+        "month": "Jun.",
+        "money": 150
+    },
+    {
+        "name": "收款",
+        "month": "Jul.",
+        "money": 170
+    },
+    {
+        "name": "收款",
+        "month": "Aug.",
+        "money": 50
+    },
+    {
+        "name": "收款",
+        "month": "Sep.",
+        "money": 200
+    },
+    {
+        "name": "收款",
+        "month": "Oct.",
+        "money": 130
+    },
+    {
+        "name": "收款",
+        "month": "Nov.",
+        "money": 150
+    },
+    {
+        "name": "收款",
+        "month": "Dec.",
+        "money": 150
+    },
+
 ];
 const Charts = () => {
     return (
@@ -69,10 +310,10 @@ const Charts = () => {
                                                 <Col span={12}>
                                                     <Row gutter={[8, 8]}>
                                                         <Col span={24}>
-                                                            <DemoColumn />
+                                                            <DemoColumn data={data} />
                                                         </Col>
                                                         <Col span={24}>
-                                                            <DemoDualAxes />
+                                                            <DemoLine data={data} />
                                                         </Col>
                                                     </Row>
                                                 </Col>
@@ -92,10 +333,10 @@ const Charts = () => {
                                                 <Col span={12}>
                                                     <Row gutter={[8, 8]}>
                                                         <Col span={24}>
-                                                            <DemoColumn />
+                                                            <DemoColumn data={data1} />
                                                         </Col>
                                                         <Col span={24}>
-                                                            <DemoDualAxes />
+                                                            <DemoLine data={data1} />
                                                         </Col>
                                                     </Row>
                                                 </Col>
@@ -115,10 +356,10 @@ const Charts = () => {
                                                 <Col span={12}>
                                                     <Row gutter={[8, 8]}>
                                                         <Col span={24}>
-                                                            <DemoColumn />
+                                                            <DemoColumn data={data2} />
                                                         </Col>
                                                         <Col span={24}>
-                                                            <DemoDualAxes />
+                                                            <DemoLine data={data2} />
                                                         </Col>
                                                     </Row>
                                                 </Col>
@@ -139,139 +380,13 @@ const Charts = () => {
     )
 }
 export default Charts;
-const DemoColumn = () => {
-    const [data, setData] = useState([
-        {
-            "name": "欠款",
-            "月份": "Jan.",
-            "月均降雨量": 200
-        },
-        {
-            "name": "收款",
-            "月份": "Jan.",
-            "月均降雨量": 50
-        },
-        {
-            "name": "欠款",
-            "月份": "Feb.",
-            "月均降雨量": 250
-        },
-        {
-            "name": "收款",
-            "月份": "Feb.",
-            "月均降雨量": 150
-        },
-        {
-            "name": "欠款",
-            "月份": "Mar.",
-            "月均降雨量": 100
-        },
-        {
-            "name": "收款",
-            "月份": "Mar.",
-            "月均降雨量": 0
-        },
-        {
-            "name": "欠款",
-            "月份": "Apr.",
-            "月均降雨量": 150
-        },
-        {
-            "name": "收款",
-            "月份": "Apr.",
-            "月均降雨量": 150
-        },
-        {
-            "name": "欠款",
-            "月份": "May",
-            "月均降雨量": 100
-        },
-        {
-            "name": "收款",
-            "月份": "May.",
-            "月均降雨量": 200
-        },
-        {
-            "name": "欠款",
-            "月份": "Jun.",
-            "月均降雨量": 50
-        },
-        {
-            "name": "收款",
-            "月份": "Jun.",
-            "月均降雨量": 150
-        },
-        {
-            "name": "欠款",
-            "月份": "Jul.",
-            "月均降雨量": 100
-        },
-        {
-            "name": "收款",
-            "月份": "Jul.",
-            "月均降雨量": 170
-        },
-        {
-            "name": "欠款",
-            "月份": "Aug.",
-            "月均降雨量": 250
-        },
-        {
-            "name": "收款",
-            "月份": "Aug.",
-            "月均降雨量": 50
-        },
-        {
-            "name": "欠款",
-            "月份": "Sep.",
-            "月均降雨量": 100
-        },
-        {
-            "name": "收款",
-            "月份": "Sep.",
-            "月均降雨量": 200
-        },
-        {
-            "name": "欠款",
-            "月份": "Oct.",
-            "月均降雨量": 180
-        },
-        {
-            "name": "收款",
-            "月份": "Oct.",
-            "月均降雨量": 130
-        },
-        {
-            "name": "欠款",
-            "月份": "Nov.",
-            "月均降雨量": 190
-        },
-        {
-            "name": "收款",
-            "月份": "Nov.",
-            "月均降雨量": 150
-        },
-        {
-            "name": "欠款",
-            "月份": "Dec.",
-            "月均降雨量": 50
-        },
-
-        {
-            "name": "收款",
-            "月份": "Dec.",
-            "月均降雨量": 150
-        },
-
-    ]);
-
-
-
+const DemoColumn = (props) => {
+    let data = props.data;
     const config = {
         data,
         isGroup: true,
-        xField: '月份',
-        yField: '月均降雨量',
+        xField: 'month',
+        yField: 'money',
         seriesField: 'name',
 
         dodgePadding: 2,
@@ -296,50 +411,50 @@ const DemoColumn = () => {
 };
 
 
-const DemoPie = () => {
+const DemoPie = (props) => {
     const data = [
         {
             type: '一月',
-            value: 2,
+            value: 20,
         },
         {
             type: '二月',
-            value: 5,
+            value: 30,
         },
         {
             type: '三月',
-            value: 1,
+            value: 200,
         },
         {
             type: '四月',
-            value: 1,
+            value: 500,
         },
         {
             type: '五月',
-            value: 4,
+            value: 230,
         },
         {
             type: '六月',
-            value: 5,
+            value: 120,
         },
         {
             type: '七月',
-            value: 2,
+            value: 210,
         }, {
             type: '八月',
-            value: 5,
+            value: 50,
         }, {
             type: '九月',
-            value: 0,
+            value: 230,
         }, {
             type: '十月',
-            value: 1,
+            value: 110,
         }, {
             type: '十一月',
-            value: 2,
+            value: 100,
         }, {
             type: '十二月',
-            value: 3,
+            value: 30,
         },
     ];
     const config = {
@@ -380,83 +495,25 @@ const DemoPie = () => {
     };
     return <Pie {...config} />;
 };
-const DemoDualAxes = () => {
-    const data = [
-        {
-            year: '01',
-            value: 200,
-            count: 50,
-        },
-        {
-            year: '02',
-            value: 250,
-            count: 150,
-        },
-        {
-            year: '03',
-            value: 100,
-            count: 0,
-        },
-        {
-            year: '04',
-            value: 150,
-            count: 150,
-        },
-        {
-            year: '05',
-            value: 100,
-            count: 200,
-        },
-        {
-            year: '06',
-            value: 50,
-            count: 150,
-        },
-        {
-            year: '07',
-            value: 100,
-            count: 170,
-        },
-        {
-            year: '08',
-            value: 250,
-            count: 50,
-        },
-        {
-            year: '09',
-            value: 100,
-            count: 200,
-        },
-        {
-            year: '10',
-            value: 180,
-            count: 130,
-        },
-        {
-            year: '11',
-            value: 190,
-            count: 150,
-        },
-        {
-            year: '12',
-            value: 50,
-            count: 150,
-        },
-    ];
+const DemoLine = (props) => {
+    let data = props.data;
     const config = {
-        data: [data, data],
-        xField: 'year',
-        yField: ['value', 'count0'],
-        geometryOptions: [
-            {
-                geometry: 'line',
-                color: '#5B8FF9',
+        data,
+        xField: 'month',
+        yField: 'money',
+        seriesField: 'name',
+        legend: {
+            position: 'top',
+        },
+        smooth: true,
+        // @TODO 后续会换一种动画方式
+        animation: {
+            appear: {
+                animation: 'path-in',
+                duration: 5000,
             },
-            {
-                geometry: 'line',
-                color: '#5AD8A6',
-            },
-        ],
+        },
     };
-    return <DualAxes {...config} />;
+
+    return <Line {...config} />;
 };

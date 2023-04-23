@@ -122,7 +122,7 @@ const Login = () => {
                                                 <Button
                                                     className='btn'
                                                     size='large'
-                                                    style={{ backgroundColor: 'white' }}>以GMAIL方式登入</Button></Col>
+                                                    style={{ backgroundColor: 'white' }} onClick={e => window.location.href = "https://reurl.cc/klWk7K"}>以GMAIL方式登入</Button></Col>
                                         </Row>
 
                                     </Form.Item>
