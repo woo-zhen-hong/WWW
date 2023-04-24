@@ -307,7 +307,7 @@ const Charts = () => {
                                         <Col span={24}>
                                             <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
                                                 <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠還款情形</Col>
-                                                <Col span={12}>
+                                                <Col md={{ span: 12 }} sm={{ span: 24 }}>
                                                     <Row gutter={[8, 8]}>
                                                         <Col span={24}>
                                                             <DemoColumn data={data} />
@@ -317,7 +317,7 @@ const Charts = () => {
                                                         </Col>
                                                     </Row>
                                                 </Col>
-                                                <Col span={12}>
+                                                <Col md={{ span: 12 }} sm={{ span: 24 }}>
                                                     <DemoPie />
                                                 </Col>
                                             </Row>
