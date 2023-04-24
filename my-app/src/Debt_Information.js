@@ -207,12 +207,7 @@ const DebtInformation = () => {
         note: '加油錢',
     }
         // back: '',
-<<<<<<< HEAD
-    },
-    ]);
-=======
         ,]);
->>>>>>> 319a0c50370e90a2dfa1b62f7ff9b8cbefd0232f
     const addDebt = () => {
         setOpen(true)
         setTitle('新增欠款');
