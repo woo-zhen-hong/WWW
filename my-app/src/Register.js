@@ -129,7 +129,7 @@ const Register = () => {
                                                 >
                                                     返回
                                                 </Button>
-
+                                            </Col>
                                         </Row>
 
                                     </Form.Item>
