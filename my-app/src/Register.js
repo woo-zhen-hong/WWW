@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
 import { Content } from 'antd/es/layout/layout';
 const Register = () => {
+    const [modalOpen, setModalOpen] = useState(false);
     useEffect(() => {
         document.title = '高師大記債系統';
         document.body.style.backgroundColor = '#D7F5FF';
@@ -11,6 +12,27 @@ const Register = () => {
     const navigate = useNavigate();
     return (
         <>
+            <Modal
+                style={{ pointerEvents: 'auto' }}
+                open={modalOpen}
+                onCancel={() => setModalOpen(false)}
+                setOpen={setModalOpen}
+                width={250}
+                footer={false}
+                className="modalStyle2"
+                wrapClassName={"modalStyle2"}
+                modalRender={(e) => <>
+                    <Col span={24} style={{ backgroundColor: '#D7F5FF' }}>
+                        <Row justify={'center'} align={'middle'} style={{ padding: '10px' }}>
+                            <Col style={{ fontSize: '1.2rem', fontWeight: 400 }}>歡迎加入</Col>
+                        </Row>
+                    </Col>
+                    <Col span={24} style={{ backgroundColor: '#ffffff', padding: '20px', fontSize: '1.2rem', textAlign: 'center' }}>
+                        歡迎加入高師大記債系統，你已註冊成功，點擊返回進行登入～
+                    </Col>
+                </>}
+                centered
+            />
             <Col span={24} style={{ padding: '80px' }}>
                 <Row gutter={[8, 40]} justify={'center'}>
                     <Col>
@@ -85,16 +107,16 @@ const Register = () => {
                                                 <Button className='btn' htmlType="submit"
                                                     size='large'
                                                     style={{ backgroundColor: '#B3B9F0' }}
-                                                // onClick={() => {
-                                                // form.validateFields()
-                                                //     .then(() => {
-                                                //         message.success('123')
-                                                //         form.submit();
-                                                //     })
-                                                //     .catch(() => {
-                                                //         message.success('456')
-                                                //     })
-                                                // }}
+                                                    onClick={() => {
+                                                        // form.validateFields()
+                                                        //     .then(() => {
+                                                        //         // form.submit();
+                                                        //         setModalOpen(true);
+                                                        //     })
+                                                        //     .catch(() => {
+                                                        //     })
+                                                        setModalOpen(true);
+                                                    }}
                                                 >
                                                     確認送出
                                                 </Button>

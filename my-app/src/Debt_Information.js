@@ -48,6 +48,55 @@ const DebtInformation = () => {
     const [edit, setEdit] = useState(false);
     const [editcard, setEditCard] = useState({});
     const [title, setTitle] = useState('');
+    const [data, setData] = useState([{
+        key: 1,
+        debt_name: 'JACKY',
+        back_name: '軟妹',
+        money: '250',
+        tags: '欠款',
+        date: '05/01',
+        note: '麻辣燙的錢',
+    }, {
+        key: 2,
+        debt_name: 'Mingyao',
+        back_name: 'JACKY',
+        money: '250',
+        tags: '還款',
+        date: '06/01',
+        note: '深水的錢',
+    }, {
+        key: 3,
+        debt_name: 'Mingyao',
+        back_name: 'JACKY',
+        money: '100',
+        tags: '還款',
+        date: '05/01',
+        note: '加油錢',
+    }, {
+        key: 4,
+        debt_name: 'JACKY',
+        back_name: 'YEEDA',
+        money: '150',
+        tags: '欠款',
+        date: '05/05',
+        note: '麥片+牛奶',
+    }, {
+        key: 5,
+        debt_name: 'JACKY',
+        back_name: 'MINGYAO',
+        money: '50',
+        tags: '欠款',
+        date: '05/03',
+        note: '軟體之星道具',
+    }, {
+        key: 6,
+        debt_name: '婷婷',
+        back_name: 'JACKY',
+        money: '150',
+        tags: '還款',
+        date: '05/05',
+        note: '披薩',
+    }]);
     const [columns, setColumns] = useState([
         {
             title: '欠款人',
@@ -55,7 +104,7 @@ const DebtInformation = () => {
             key: 'debt_name',
         },
         {
-            title: '還款人',
+            title: '收款人',
             dataIndex: 'back_name',
             key: 'back_name',
 
@@ -110,7 +159,21 @@ const DebtInformation = () => {
                 <>
                     <Space>
                         <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
-                        <a style={{ color: 'red' }}>刪除</a>
+                        <Popconfirm
+                            title="確定要刪除好友嗎"
+                            okText="確定"
+                            cancelText="取消"
+                            onConfirm={e => {
+                                setData(data.filter(item => item.key != record.key));
+                                messageApi.open({
+                                    type: 'success',
+                                    content: '刪除成功',
+                                });
+                            }}
+                        >
+                            <a style={{ color: 'red' }}>刪除</a>
+
+                        </Popconfirm>
                     </Space>
                 </>
 
@@ -118,51 +181,9 @@ const DebtInformation = () => {
         },
         
     ]);
-    const [data, setData] = useState([{
-        debt_name: 'JACKY',
-        back_name: '軟妹',
-        money: '250',
-        tags: '欠款',
-        date: '05/01',
-        note: '麻辣燙的錢',
-    }, {
-        debt_name: 'Mingyao',
-        back_name: 'JACKY',
-        money: '250',
-        tags: '還款',
-        date: '06/01',
-        note: '深水的錢',
-    }
-        , {
-        debt_name: 'Mingyao',
-        back_name: 'DAVIS',
-        money: '100',
-        tags: '還款',
-        date: '05/01',
-        note: '加油錢',
-    }, {
-        debt_name: 'YEEDA',
-        back_name: 'JACKY',
-        money: '150',
-        tags: '欠款',
-        date: '05/05',
-        note: '麥片+牛奶',
-    }, {
-        debt_name: '軟妹',
-        back_name: 'MINGYAO',
-        money: '50',
-        tags: '欠款',
-        date: '05/03',
-        note: '軟體之星道具',
-    }, {
-        debt_name: '婷婷',
-        back_name: 'MINGYAO',
-        money: '150',
-        tags: '還款',
-        date: '05/05',
-        note: '披薩',
-    }]);
+
     const [data1, setData1] = useState([{
+        key: 1,
         debt_name: 'JACKY',
         back_name: '軟妹',
         money: '250',
@@ -170,14 +191,16 @@ const DebtInformation = () => {
         date: '05/01',
         note: '麻辣燙的錢',
     }, {
-        debt_name: 'YEEDA',
-        back_name: 'JACKY',
+        key: 2,
+        debt_name: 'JACKY',
+        back_name: 'YEEDA',
         money: '150',
         tags: '欠款',
         date: '05/05',
         note: '麥片+牛奶',
     }, {
-        debt_name: '軟妹',
+        key: 3,
+        debt_name: 'JACKY',
         back_name: 'MINGYAO',
         money: '50',
         tags: '欠款',
@@ -185,6 +208,7 @@ const DebtInformation = () => {
         note: '軟體之星道具',
     }]);
     const [data2, setData2] = useState([{
+        key: 1,
         debt_name: 'Mingyao',
         back_name: 'JACKY',
         money: '250',
@@ -192,15 +216,17 @@ const DebtInformation = () => {
         date: '06/01',
         note: '深水的錢'
     }, {
+        key: 2,
         debt_name: '婷婷',
-        back_name: 'MINGYAO',
+        back_name: 'JACKY',
         money: '150',
         tags: '還款',
         date: '05/05',
         note: '披薩',
     }, {
+        key: 3,
         debt_name: 'Mingyao',
-        back_name: 'DAVIS',
+        back_name: 'JACKY',
         money: '100',
         tags: '還款',
         date: '05/01',
@@ -244,6 +270,161 @@ const DebtInformation = () => {
         setOpen(true);
 
     }
+    const [columns1, setColumns1] = useState([
+        {
+            title: '收款人',
+            dataIndex: 'back_name',
+            key: 'back_name',
+
+        },
+        {
+            title: '金額',
+            dataIndex: 'money',
+            key: 'money',
+
+        },
+        {
+            title: '資訊',
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (_, record) => (
+                <>
+                    {
+                        record.tags === '還款' ? <>
+                            <Tag color={'volcano'}>
+                                {record.tags}
+                            </Tag>
+                        </> : <>
+                            <Tag color={'geekblue'}>
+                                {record.tags}
+                            </Tag>
+                        </>
+                    }
+                </>
+            ),
+        },
+        {
+            title: '日期',
+            dataIndex: 'date',
+            key: 'date',
+
+        },
+        {
+            title: '備註',
+            dataIndex: 'note',
+            key: 'note',
+
+        },
+        // {
+        //     title: '是否還款',
+        //     dataIndex: 'back',
+        //     key: 'back',
+        // },
+        {
+            title: '',
+            key: 'action',
+            render: (_, record) => (
+                <>
+                    <Space>
+                        <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
+                        <Popconfirm
+                            title="確定要刪除好友嗎"
+                            okText="確定"
+                            cancelText="取消"
+                            onConfirm={e => {
+                                setData1(data1.filter(item => item.key != record.key));
+                                messageApi.open({
+                                    type: 'success',
+                                    content: '刪除成功',
+                                });
+                            }}
+                        >
+                            <a style={{ color: 'red' }}>刪除</a>
+
+                        </Popconfirm>
+                    </Space>
+                </>
+
+            ),
+        },
+    ]);
+    const [columns2, setColumns2] = useState([
+        {
+            title: '欠款人',
+            dataIndex: 'debt_name',
+            key: 'debt_name',
+        },
+        {
+            title: '金額',
+            dataIndex: 'money',
+            key: 'money',
+
+        },
+        {
+            title: '資訊',
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (_, record) => (
+                <>
+                    {
+                        record.tags === '還款' ? <>
+                            <Tag color={'volcano'}>
+                                {record.tags}
+                            </Tag>
+                        </> : <>
+                            <Tag color={'geekblue'}>
+                                {record.tags}
+                            </Tag>
+                        </>
+                    }
+                </>
+            ),
+        },
+        {
+            title: '日期',
+            dataIndex: 'date',
+            key: 'date',
+
+        },
+        {
+            title: '備註',
+            dataIndex: 'note',
+            key: 'note',
+
+        },
+        // {
+        //     title: '是否還款',
+        //     dataIndex: 'back',
+        //     key: 'back',
+        // },
+        {
+            title: '',
+            key: 'action',
+            render: (_, record) => (
+                <>
+                    <Space>
+                        <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
+                        <Popconfirm
+                            title="確定要刪除好友嗎"
+                            okText="確定"
+                            cancelText="取消"
+                            onConfirm={e => {
+                                setData2(data2.filter(item => item.key != record.key));
+                                messageApi.open({
+                                    type: 'success',
+                                    content: '刪除成功',
+                                });
+                            }}
+                        >
+                            <a style={{ color: 'red' }}>刪除</a>
+
+                        </Popconfirm>
+                    </Space>
+                </>
+
+            ),
+        },
+    ]);
     return (
         <>
             {contextHolder}
@@ -264,7 +445,7 @@ const DebtInformation = () => {
                         <Col>
                             <Row gutter={[8, 8]}>
                                 <Col><Button className='btn' style={{ backgroundColor: '#7DAAFF', color: 'white' }} onClick={addDebt}>新增欠款</Button></Col>
-                                <Col><Button className='btn' style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={addBack}>新增還款</Button></Col>
+                                <Col><Button className='btn' style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={addBack}>新增收款</Button></Col>
                             </Row>
                         </Col>
                         <Col span={24}>
@@ -291,18 +472,18 @@ const DebtInformation = () => {
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns} dataSource={data1}
+                                                columns={columns1} dataSource={data1}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),
                                 }, {
                                     key: 3,
-                                    label: '還款資訊',
+                                    label: '收款資訊',
                                     children: (<>
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns} dataSource={data2}
+                                                columns={columns2} dataSource={data2}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),

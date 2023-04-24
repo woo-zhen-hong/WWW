@@ -5,6 +5,9 @@ import { RollbackOutlined, HeartOutlined } from '@ant-design/icons';
 import { Content } from 'antd/es/layout/layout';
 const ForgetPassword = () => {
     const [success, setSuccess] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalSuccess, setModalSuccess] = useState(false);
+
     useEffect(() => {
         document.title = '高師大記債系統';
         document.body.style.backgroundColor = '#D7F5FF';
@@ -12,6 +15,62 @@ const ForgetPassword = () => {
     const navigate = useNavigate();
     return (
         <>
+            <Modal
+                style={{ pointerEvents: 'auto' }}
+                open={modalSuccess}
+                onCancel={() => setModalSuccess(false)}
+                setOpen={setModalSuccess}
+                width={250}
+                footer={false}
+                className="modalStyle2"
+                wrapClassName={"modalStyle2"}
+                modalRender={(e) => <>
+                    <Col span={24} style={{ backgroundColor: '#D7F5FF' }}>
+                        <Row justify={'center'} align={'middle'} style={{ padding: '10px' }}>
+                            <Col style={{ fontSize: '1.2rem', fontWeight: 400 }}>更新成功</Col>
+                        </Row>
+                    </Col>
+                    <Col span={24} style={{ backgroundColor: '#ffffff', padding: '20px', fontSize: '1.2rem', textAlign: 'center' }}>
+                        <Row gutter={[8, 16]} justify={'center'}>
+                            <Col span={24}>
+                                更新成功，點擊返回進行登入～
+                            </Col>
+                            <Col>
+                                <Button className='btn' style={{ background: '#D7F5FF', color: 'black' }} onClick={(e) => setModalSuccess(false)} block>返回</Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                </>}
+                centered
+            />
+            <Modal
+                style={{ pointerEvents: 'auto' }}
+                open={modalOpen}
+                onCancel={() => setModalOpen(false)}
+                setOpen={setModalOpen}
+                width={250}
+                footer={false}
+                className="modalStyle2"
+                wrapClassName={"modalStyle2"}
+                modalRender={(e) => <>
+                    <Col span={24} style={{ backgroundColor: '#D7F5FF' }}>
+                        <Row justify={'center'} align={'middle'} style={{ padding: '10px' }}>
+                            <Col style={{ fontSize: '1.2rem', fontWeight: 400 }}>寄送成功</Col>
+                        </Row>
+                    </Col>
+                    <Col span={24} style={{ backgroundColor: '#ffffff', padding: '20px', fontSize: '1.2rem', textAlign: 'center' }}>
+                        <Row gutter={[8, 16]} justify={'center'}>
+                            <Col span={24}>
+                                已寄送驗證碼至您的信箱，請盡快至信箱進行確認～～
+                            </Col>
+                            <Col>
+                                <Button className='btn' style={{ background: '#D7F5FF', color: 'black' }} onClick={(e) => setModalOpen(false)} block>返回</Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                </>}
+                centered
+            />
             <Col span={24} style={{ padding: '80px' }}>
                 <Row>
                     <Col><RollbackOutlined style={{ fontSize: '20px' }} onClick={e => navigate(-1)} /></Col>
@@ -32,7 +91,7 @@ const ForgetPassword = () => {
                                             <Col>
                                                 <Button className='btn' htmlType="submit"
                                                     style={{ backgroundColor: '#B3B9F0' }}
-                                                // onClick={e => navigate('/Register')}
+                                                    onClick={e => setModalOpen(true)}
                                                 >
                                                     傳送驗證碼至電子郵件
                                                 </Button>
@@ -81,7 +140,7 @@ const ForgetPassword = () => {
                                                 <Input.Password placeholder='請輸入新密碼' />
                                             </Form.Item>
                                             <Form.Item
-                                                name={'password'}
+                                                name={'password2'}
                                                 // label={'驗證碼'}
                                                 rules={[
                                                     {
@@ -98,16 +157,17 @@ const ForgetPassword = () => {
                                                         <Button className='btn' htmlType="submit"
                                                             size='large'
                                                             style={{ backgroundColor: '#B3B9F0' }}
-                                                        // onClick={() => {
-                                                        // form.validateFields()
-                                                        //     .then(() => {
-                                                        //         message.success('123')
-                                                        //         form.submit();
-                                                        //     })
-                                                        //     .catch(() => {
-                                                        //         message.success('456')
-                                                        //     })
-                                                        // }}
+                                                            // onClick={() => {
+                                                            // form.validateFields()
+                                                            //     .then(() => {
+                                                            //         message.success('123')
+                                                            //         form.submit();
+                                                            //     })
+                                                            //     .catch(() => {
+                                                            //         message.success('456')
+                                                            //     })
+                                                            // }}
+                                                            onClick={e => setModalSuccess(true)}
                                                         >
                                                             確認送出
                                                         </Button>
