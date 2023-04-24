@@ -5,39 +5,27 @@ import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
 import { Column, Pie, Line } from '@ant-design/plots';
 import styled from 'styled-components';
 const CustomTabs = styled.div`
+    //tab的css設定
     .ant-tabs-tab{
         color: #bbb;
         font-size :1rem;
         font-weight: 400;
         border-radius: 10px;
-        // background-color: #D9B3B3;
-        background: linear-gradient(-60deg, transparent 20px, white 0) right,
-        linear-gradient(120deg, transparent 20px, white 0) left;
-        background-color: transparent;
     }
+    //點擊tab後外面顏色改變、字變大、變粗
     .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab-active{
         font-size :1.5rem;
         font-weight: 700;
         background-color: #A6B3D2 !important;
-
     }
-    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab{
-      padding:10px;
-    }
+    //點擊tab字的顏色變白色
     .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
       color:#FFFFFF;
-    }
-    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab{
-    //   background:#FFF4C1;
-      font-size :1rem;
     }
     .ant-tabs-tab:hover {
         color: #gray;
         background: #FFF
         transform:scale(1.2)
-    }
-    .ant-tabs-tab-btn:focus, .ant-tabs-tab-remove:focus, .ant-tabs-tab-btn:active, .ant-tabs-tab-remove:active {
-        color: #FFF;
     }
 `;
 const data = [
