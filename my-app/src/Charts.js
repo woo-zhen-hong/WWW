@@ -83,7 +83,7 @@ const data = [
     },
     {
         "name": "欠款",
-        "month": "May",
+        "month": "May.",
         "money": 100
     },
     {
