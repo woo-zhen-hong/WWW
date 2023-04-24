@@ -179,6 +179,7 @@ const DebtInformation = () => {
 
             ),
         },
+        
     ]);
 
     const [data1, setData1] = useState([{
