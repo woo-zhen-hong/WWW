@@ -157,19 +157,27 @@ const MainOutlet = () => {
                     >
                         {/* {dimensions['width'] <= 1200 ?
                         <> */}
-                        {collapsed && (<Menu
-                            mode="inline"
-                            defaultSelectedKeys={['/']}
-                            selectedKeys={selecte_keys}
-                            onClick={onSelect}
-                            items={item}
-                            style={{
-                                whiteSpace: 'nowrap',
-                                width: '100%',
-                                textAlign: 'center',
-                                background: '#D7F5FF'
-                            }}
-                        />)}
+                        {collapsed && (
+                            <>
+                                <Menu
+                                    mode="inline"
+                                    defaultSelectedKeys={['/']}
+                                    selectedKeys={selecte_keys}
+                                    onClick={onSelect}
+                                    items={item}
+                                    style={{
+                                        whiteSpace: 'nowrap',
+                                        width: '100%',
+                                        textAlign: 'center',
+                                        background: '#D7F5FF'
+                                    }}
+                                />
+                                <Col span={24}>
+                                    <Button block className='btn' onClick={e => navigate('/')}
+                                        style={{ backgroundColor: '#F0E2FF' }}>登出</Button>
+                                </Col>
+                            </>
+                        )}
                         <Col span={24}>
                             <Outlet />
                         </Col>
