@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { PlusOutlined, UserOutlined } from '@ant-design/icons';
 const { Search } = Input;
 const Friends = () => {
+    const [name, setName] = useState('');
     const [messageApi, contextHolder] = message.useMessage();
     const [modalOpen, setModalOpen] = useState(false);
     const [friend, setFriend] = useState(false);
@@ -80,7 +81,8 @@ const Friends = () => {
             tags: '還錢',
         },
     ]);
-    const onSearch = () => {
+    const onSearch = (value) => {
+        setName(value)
         setFriend(true);
     }
     const addfriend = () => {
@@ -132,7 +134,7 @@ const Friends = () => {
                                                 <Avatar size={80} icon={<UserOutlined />} />
                                                 {/* </Col> */}
                                                 <Col span={22} style={{ textAlign: 'center' }}>
-                                                    mingyao
+                                                    {name}
                                                 </Col>
                                             </Row>
                                         </Col>

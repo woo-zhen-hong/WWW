@@ -12,24 +12,18 @@ const CustomTabs = styled.div`
         font-weight: 400;
         border-radius: 10px;
         // background-color: #D9B3B3;
-        background: linear-gradient(-60deg, transparent 20px, white 0) right,
-        linear-gradient(120deg, transparent 20px, white 0) left;
-        background-color: transparent;
     }
     .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab-active{
         font-size :1.5rem;
         font-weight: 700;
         background-color: #A6B3D2 !important;
-
     }
-    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab{
-      padding:10px;
-    }
+    //點擊tab字的顏色變白色
     .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
       color:#FFFFFF;
     }
+    //tab字的大小
     .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab{
-    //   background:#FFF4C1;
       font-size :1rem;
     }
     .ant-tabs-tab:hover {
