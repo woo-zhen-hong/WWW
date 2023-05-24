@@ -5,7 +5,7 @@ import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
 import { Column, Pie, Line } from '@ant-design/plots';
 import styled from 'styled-components';
 const CustomTabs = styled.div`
-    //tab的css設定
+    //tab的css設定123
     .ant-tabs-tab{
         color: #bbb;
         font-size :1rem;
