@@ -6,7 +6,6 @@ import { Content } from 'antd/es/layout/layout';
 const Login = () => {
     useEffect(() => {
         document.title = '高師大記債系統';
-        // 高師大記債系統
         document.body.style.backgroundColor = '#D7F5FF';
     }, [])
     const navigate = useNavigate();
