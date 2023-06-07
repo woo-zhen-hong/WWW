@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Tabs, Tag, Table, Modal, Row, Col, Button, message, Radio, Card, Input, Popconfirm, Checkbox, Switch, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
+import axios from "axios";
 import MainModal from './MainModal';
 import styled from 'styled-components';
 import './App.css';
@@ -413,6 +414,16 @@ const DebtInformation = () => {
             ),
         },
     ]);
+    useEffect(() => {
+        getData();
+    }, [])
+    const getData = () => {
+        axios
+            .get('/backend/view_debt.php')
+            .then((response) => {
+
+            })
+    }
     return (
         <>
             {contextHolder}

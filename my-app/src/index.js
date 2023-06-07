@@ -10,6 +10,7 @@ import MainOutlet from './Layout';
 import DebtInformation from './Debt_Information';
 import Charts from './Charts';
 import Friends from './Friends';
+axios.defaults.baseURL = "http://localhost:8070";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
