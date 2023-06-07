@@ -3,6 +3,7 @@ import { Form, Tooltip, Layout, Modal, Row, Col, Button, DatePicker, Radio, Card
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
 import { Content } from 'antd/es/layout/layout';
+import axios from 'axios';
 const Login = () => {
     useEffect(() => {
         document.title = '高師大記債系統';
@@ -10,6 +11,15 @@ const Login = () => {
     }, [])
     const navigate = useNavigate();
     const [form] = Form.useForm();
+    const getlogin = (values) => {
+        axios
+            .post('/backend/login.php', { email: values.email, password: values.password })
+            .then((response) => {
+                if (response.data.status == 'success') {
+                    navigate('/Debt_Information')
+                }
+            })
+    }
     return (
         <>
             <Col span={24} style={{ padding: '80px' }}>
@@ -23,7 +33,8 @@ const Login = () => {
                                 <Form
                                     // form={form}
                                     onFinish={(values) => {
-                                        console.log(values)
+                                        // console.log(values)
+                                        getlogin(values);
                                     }}
                                     wrapperCol={{
                                         span: 18
@@ -33,7 +44,7 @@ const Login = () => {
                                     }}
                                 >
                                     <Form.Item
-                                        name={'account'}
+                                        name={'email'}
                                         // label={'帳號'}
                                         rules={[
                                             {
@@ -97,8 +108,8 @@ const Login = () => {
                                                         form.validateFields()
                                                             .then(() => {
                                                                 // message.success('123')
-                                                                // form.submit();
-                                                                navigate('/Debt_Information')
+                                                                form.submit();
+                                                                // navigate('/Debt_Information')
                                                             })
                                                             .catch(() => {
                                                                 // message.success('456')
