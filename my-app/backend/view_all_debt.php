@@ -1,5 +1,7 @@
 <?php
-include "index_1.php";
+session_start(); 
+include "index.php";
+$id = $_SESSION["user_id"];
 // fetch records
 $sql = "SELECT * 
 FROM `list` 
@@ -9,11 +11,13 @@ $result = mysqli_query($con, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     $array[] = $row;
 }
-
 $dataset = array(
     "echo" => 1,
     "totalrecords" => count($array),
     "totaldisplayrecords" => count($array),
     "data" => $array
 );
+if($dataset !=''){
+    echo "帳號密碼錯誤",
+}
 echo json_encode($dataset);

@@ -35,3 +35,4 @@ if ($email != "" && $password != "") {
     );
 }
 echo json_encode($dataset);
+session_abort();
