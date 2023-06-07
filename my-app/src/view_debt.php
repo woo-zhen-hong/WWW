@@ -4,7 +4,7 @@ include "index_1.php";
 $sql = "SELECT * 
 FROM `list` 
 WHERE 'list'.'user_id' = 'list'.'debt_user_id' OR 'list'.'user_id' = 'list'.'debt_user_id2'
-AND 'list'.'amount' < 0";
+AND 'list'.'amount' < 0 ";
 $result = mysqli_query($con, $sql);
 
 while ($row = mysqli_fetch_assoc($result)) {
