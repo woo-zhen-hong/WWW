@@ -2,9 +2,9 @@
 session_start(); // 啟用交談期
 // Start the session
 include "index.php";
-$email = "111";
-$password = "111";
-$con = mysqli_connect("140.127.74.144", "410977004", "410977004", "410977004");
+// $email = "111";
+// $password = "111";
+// $con = mysqli_connect("140.127.74.144", "410977004", "410977004", "410977004");
 if ($email != "" && $password != "") {
     $sql = "SELECT * FROM `410977004`.list
     WHERE `410977004`.list.debt_user_id_1=1
