@@ -17,4 +17,4 @@ $database = 'www';
 // db connection
 $con = mysqli_connect($hostname, $username, $password, $database) or die("Error " . mysqli_error($con));
 
-$_SESSION['id'] = 3;
+$_SESSION['id'] = 1;
