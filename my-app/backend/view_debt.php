@@ -4,9 +4,14 @@ session_start(); // 啟用交談期
 include "index.php";
 $email = "jacky";
 $password = "jk123";
-$con = mysqli_connect("140.127.74.144", "410977004", "410977004", "410977004");
+$con = mysqli_connect("36.238.120.118", "jk", "jk123", "www");
+
 if ($email != "" && $password != "") {
-    $sql = "SELECT * FROM `410977004`.list";
+    $sql = "SELECT *
+    FROM `www`.user
+    INNER JOIN `www`.list
+    ON `www`.user.id = `www`.list.debt_user_id_1 
+    AND `www`.user.email = '111'";
     // var_dump($sql);
     $stmt = $con->prepare($sql);
     // set parameters and execute

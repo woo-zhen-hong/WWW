@@ -7,9 +7,9 @@ $data = json_decode($request_body);
 $email = $data->email;
 $password = $data->password;
 if ($email != "" && $password != "") {
-    $sql = "SELECT * FROM  `410977004`.user
-             WHERE `410977004`.user.password = '$password' 
-             AND `410977004`.user.email= '$email' ";
+    $sql = "SELECT * FROM  `www`.user
+             WHERE `www`.user.password = '$password' 
+             AND `www`.user.email= '$email' ";
     // var_dump($sql);
     $stmt = $con->prepare($sql);
     // set parameters and execute
