@@ -1,7 +1,8 @@
 <?php
 session_start();  // 啟用交談期
 // Start the session
-include "index.php";
+// include "index.php";
+include "index2.php";
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body);
 $email = $data->email;
