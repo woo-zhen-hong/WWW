@@ -21,6 +21,8 @@ $result = mysqli_query($con, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     $array[] = $row;
 }
-$dataset = $array;
-print_r($data);
+$dataset = array(
+    "total" => count($array),
+    "data" => $array
+);
 echo json_encode($dataset);

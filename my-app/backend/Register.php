@@ -8,7 +8,7 @@ $name = $data->name;
 $email = $data->email;
 $password = $data->password;
 if ($name != "" && $email != "" && $password != "") {
-    $sql = "INSERT INTO `www`.user (name,email,password)
+    $sql = "REPLACE INTO `www`.user (name,email,password)
             VALUES ('$name', '$email', '$password')";
     $stmt = $con->prepare($sql);
     // set parameters and execute

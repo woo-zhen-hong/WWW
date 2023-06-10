@@ -2,7 +2,8 @@
 session_start();  // 啟用交談期
 // Start the session
 // include "index.php";
-include "index2.php";
+
+include "index.php";
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body);
 $email = $data->email;
@@ -20,7 +21,7 @@ if ($email != "" && $password != "") {
     $user = $result->fetch_assoc();
     // var_dump($user['id']);
     if ($user != NULL) {
-        $_SESSION["user_id"] = $user['id'];
+        $_SESSION['id'] = $user['id'];
         // header('Location: main.php');
         $dataset = array(
             "status" => "success"
