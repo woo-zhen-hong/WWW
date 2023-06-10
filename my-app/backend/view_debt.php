@@ -8,6 +8,7 @@ $sql = "SELECT   list.id 'list_id', list.amount 'money',list.debt_date 'date'
         , user.name 'debt_name'
         , user2.name 'back_name'
         , list.debt_alert 'tag'
+        ,list.id 'id'
         FROM www.list
         LEFT JOIN www.user ON list.debt_user_id_1 = user.id 
         LEFT JOIN www.user user2 ON list.debt_user_id_2 = user2.id
