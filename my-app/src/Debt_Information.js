@@ -171,7 +171,7 @@ const DebtInformation = () => {
 
     ]);
 
-    const [data1, setData1] = useState([{
+    const [data_debt, set_data_debt] = useState([{
         key: 1,
         debt_name: 'JACKY',
         back_name: '軟妹',
@@ -196,7 +196,7 @@ const DebtInformation = () => {
         date: '05/03',
         note: '軟體之星道具',
     }]);
-    const [data2, setData2] = useState([{
+    const [back_data, set_back_data] = useState([{
         key: 1,
         debt_name: 'Mingyao',
         back_name: 'JACKY',
@@ -321,7 +321,7 @@ const DebtInformation = () => {
                             okText="確定"
                             cancelText="取消"
                             onConfirm={e => {
-                                setData1(data1.filter(item => item.key != record.key));
+                                set_data_debt(data_debt.filter(item => item.key != record.key));
                                 messageApi.open({
                                     type: 'success',
                                     content: '刪除成功',
@@ -398,7 +398,7 @@ const DebtInformation = () => {
                             okText="確定"
                             cancelText="取消"
                             onConfirm={e => {
-                                setData2(data2.filter(item => item.key != record.key));
+                                set_back_data(back_data.filter(item => item.key != record.key));
                                 messageApi.open({
                                     type: 'success',
                                     content: '刪除成功',
@@ -415,15 +415,38 @@ const DebtInformation = () => {
         },
     ]);
     useEffect(() => {
-        getData();
+        getAllData();
     }, [])
-    const getData = () => {
+    const getAllData = () => {
+        axios
+            .get('/backend/view_all_debt.php')
+            .then((response) => {
+
+            })
+    }
+    const getBack = () => {
         axios
             .get('/backend/view_debt.php')
             .then((response) => {
 
             })
     }
+    const getDebt = () => {
+        axios
+            .get('/backend/view_repay.php')
+            .then((response) => {
+
+            })
+    }
+    useEffect(() => {
+        if (activeKey == 1) {
+            getAllData();
+        } else if (activeKey == 2) {
+            getDebt();
+        } else if (activeKey == 3) {
+            getBack();
+        }
+    }, [activeKey])
     return (
         <>
             {contextHolder}
@@ -450,9 +473,9 @@ const DebtInformation = () => {
                         <Col span={24}>
                             <Tabs
                                 type="card"
-                                // onChange={key => setActivety(key)}
-                                // defaultActiveKey={1}
-                                // activeKey={activeKey}
+                                onChange={key => setActivety(key)}
+                                defaultActiveKey={1}
+                                activeKey={activeKey}
                                 items={[{
                                     key: 1,
                                     label: '全部',
@@ -471,7 +494,7 @@ const DebtInformation = () => {
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns1} dataSource={data1}
+                                                columns={columns1} dataSource={data_debt}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),
@@ -482,7 +505,7 @@ const DebtInformation = () => {
                                         <Col span={24}>
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
-                                                columns={columns2} dataSource={data2}
+                                                columns={columns2} dataSource={back_data}
                                                 pagination={false}></Table>
                                         </Col>
                                     </>),

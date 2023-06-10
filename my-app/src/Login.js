@@ -76,7 +76,7 @@ const Login = () => {
                                             </Col>
                                         </Row>
                                     </Form.Item>
-                                    <Form.Item
+                                    {/* <Form.Item
                                         name={'password'}
                                         // label={'驗證碼'}
                                         rules={[
@@ -97,7 +97,7 @@ const Login = () => {
                                                 <RedoOutlined />
                                             </Col>
                                         </Row>
-                                    </Form.Item>
+                                    </Form.Item> */}
                                     <Form.Item>
                                         <Row gutter={[24, 16]} justify={'center'}>
                                             <Col>
@@ -129,11 +129,11 @@ const Login = () => {
                                                     註冊
                                                 </Button>
                                             </Col>
-                                            <Col>
+                                            {/* <Col>
                                                 <Button
                                                     className='btn'
                                                     size='large'
-                                                    style={{ backgroundColor: 'white' }} onClick={e => window.location.href = "https://reurl.cc/klWk7K"}>以GMAIL方式登入</Button></Col>
+                                                    style={{ backgroundColor: 'white' }} onClick={e => window.location.href = "https://reurl.cc/klWk7K"}>以GMAIL方式登入</Button></Col> */}
                                         </Row>
 
                                     </Form.Item>
