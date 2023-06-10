@@ -1,20 +1,17 @@
 <?php
-include "index_1.php";
-// fetch records
-$sql = "SELECT * 
-FROM `list` 
-WHERE 'list'.'user_id' = 'list'.'debt_user_id' OR 'list'.'user_id' = 'list'.'debt_user_id2'
-AND 'list'.'amount' > 0 ";
+session_start(); // 啟用交談期
+// Start the session
+include "index.php";
+$sql = "SELECT * FROM `www`.list
+    WHERE `www`.list.debt_user_id_1=1
+    OR `www`.list.debt_user_id_2=1";
 $result = mysqli_query($con, $sql);
-
 while ($row = mysqli_fetch_assoc($result)) {
     $array[] = $row;
 }
-
 $dataset = array(
-    "echo" => 1,
-    "totalrecords" => count($array),
-    "totaldisplayrecords" => count($array),
+    "total" => count($array),
     "data" => $array
 );
+
 echo json_encode($dataset);

@@ -415,15 +415,38 @@ const DebtInformation = () => {
         },
     ]);
     useEffect(() => {
-        getData();
+        getAllData();
     }, [])
-    const getData = () => {
+    const getAllData = () => {
         axios
             .get('/backend/view_all_debt.php')
             .then((response) => {
 
             })
     }
+    const getBack = () => {
+        axios
+            .get('/backend/view_debt.php')
+            .then((response) => {
+
+            })
+    }
+    const getDebt = () => {
+        axios
+            .get('/backend/view_repay.php')
+            .then((response) => {
+
+            })
+    }
+    useEffect(() => {
+        if (activeKey == 1) {
+            getAllData();
+        } else if (activeKey == 2) {
+            getDebt();
+        } else if (activeKey == 3) {
+            getBack();
+        }
+    }, [activeKey])
     return (
         <>
             {contextHolder}
@@ -450,9 +473,9 @@ const DebtInformation = () => {
                         <Col span={24}>
                             <Tabs
                                 type="card"
-                                // onChange={key => setActivety(key)}
-                                // defaultActiveKey={1}
-                                // activeKey={activeKey}
+                                onChange={key => setActivety(key)}
+                                defaultActiveKey={1}
+                                activeKey={activeKey}
                                 items={[{
                                     key: 1,
                                     label: '全部',
