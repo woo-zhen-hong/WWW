@@ -3,11 +3,10 @@ session_start(); // 啟用交談期
 // Start the session
 include "index.php";
 $user_id = $_SESSION['id'];
-$sql = "SELECT  list.amount 'money',list.debt_date 'date' 
+$sql = "SELECT  list.id 'list_id',  list.amount 'money',list.debt_date 'date' 
         ,list.debt_note 'note'
         , user.name 'debt_name'
         , user2.name 'back_name'
-        ,list.id 'id'
         ,case
         when user.id = 1 then 0
         when user2.id = 1 then 1
