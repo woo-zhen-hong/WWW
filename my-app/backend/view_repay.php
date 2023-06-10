@@ -13,7 +13,7 @@ $sql = "SELECT  list.amount 'money',list.debt_date 'date'
         LEFT JOIN www.user ON list.debt_user_id_1 = user.id 
         LEFT JOIN www.user user2 ON list.debt_user_id_2 = user2.id
         WHERE user.id = $user_id
-            ";
+        ORDER BY list.debt_date";
 $result = mysqli_query($con, $sql);
 while ($row = mysqli_fetch_assoc($result)) {
     $array[] = $row;

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Tabs, Upload, Layout, Modal, Row, Col, Button, DatePicker, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
+import { Tabs, Upload, Layout, Modal, Row, Col, Button, message, DatePicker, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
+import axios from "axios";
 import { Column, Pie, Line } from '@ant-design/plots';
 import styled from 'styled-components';
 const CustomTabs = styled.div`
@@ -277,7 +278,103 @@ const data2 = [
     },
 
 ];
+
+
 const Charts = () => {
+    const [messageApi, contextHolder] = message.useMessage();
+    const [activeKey, setActivety] = useState(1);
+    const [title, setTitle] = useState('');
+    const [data, setData] = useState([]);
+    const [data_debt, set_data_debt] = useState([{
+        key: 1,
+    },]);
+    const [back_data, set_back_data] = useState([{
+        key: 1,
+    },]);
+    useEffect(() => {
+        getAllData();
+    }, [])
+    const getAllData = () => {
+        axios
+            .get('/backend/view_all_debt.php')
+            .then((response) => {
+                let arr = [];
+                let test_data = response.data.data;
+                test_data.forEach(element => {
+                    let final_month = element["date"].charAt(5) + element["date"].charAt(6);
+                    let final_vol;
+                    if (element["tag"] === 1) {
+                        final_vol = "欠款";
+                    } else {
+                        final_vol = "收款";
+                    }
+                    arr.push({
+                        vol: final_vol,
+                        month: final_month,
+                        amount: Number(element["money"]),
+                    })
+                });
+                setData(arr);
+                //console.log(arr);
+            })
+    }
+    const getBack = () => {
+        axios
+            .get('/backend/view_debt.php')
+            .then((response) => {
+                let arr = [];
+                let test_data = response.data.data;
+                test_data.forEach(element => {
+                    let final_month = element["date"].charAt(5) + element["date"].charAt(6);
+                    let final_vol;
+                    if (element["tag"] === 1) {
+                        final_vol = "欠款";
+                    } else {
+                        final_vol = "收款";
+                    }
+                    arr.push({
+                        vol: final_vol,
+                        month: final_month,
+                        amount: Number(element["money"]),
+                    })
+                });
+                set_data_debt(arr);
+                //console.log(response);
+            })
+    }
+    const getDebt = () => {
+        axios
+            .get('/backend/view_repay.php')
+            .then((response) => {
+                let arr = [];
+                let test_data = response.data.data;
+                test_data.forEach(element => {
+                    let final_month = element["date"].charAt(5) + element["date"].charAt(6);
+                    let final_vol;
+                    if (element["tag"] === 1) {
+                        final_vol = "欠款";
+                    } else {
+                        final_vol = "收款";
+                    }
+                    arr.push({
+                        vol: final_vol,
+                        month: final_month,
+                        amount: Number(element["money"]),
+                    })
+                });
+                set_back_data(arr);
+                //console.log(response);
+            })
+    }
+    useEffect(() => {
+        if (activeKey == 1) {
+            getAllData();
+        } else if (activeKey == 2) {
+            getBack();
+        } else if (activeKey == 3) {
+            getDebt();
+        }
+    }, [activeKey])
     return (
         <>
             <CustomTabs>
@@ -288,6 +385,9 @@ const Charts = () => {
                             <Tabs
                                 // onChange={onChange}
                                 type="card"
+                                onChange={key => setActivety(key)}
+                                defaultActiveKey={1}
+                                activeKey={activeKey}
                                 items={[{
                                     key: 1,
                                     label: '全部',
@@ -306,7 +406,7 @@ const Charts = () => {
                                                     </Row>
                                                 </Col>
                                                 <Col md={{ span: 12 }} sm={{ span: 24 }}>
-                                                    <DemoPie />
+                                                    <DemoPie data={data} />
                                                 </Col>
                                             </Row>
                                         </Col>
@@ -321,15 +421,15 @@ const Charts = () => {
                                                 <Col span={12}>
                                                     <Row gutter={[8, 8]}>
                                                         <Col span={24}>
-                                                            <DemoColumn data={data1} />
+                                                            <DemoColumn data={data_debt} />
                                                         </Col>
                                                         <Col span={24}>
-                                                            <DemoLine data={data1} />
+                                                            <DemoLine data={data_debt} />
                                                         </Col>
                                                     </Row>
                                                 </Col>
                                                 <Col span={12}>
-                                                    <DemoPie />
+                                                    <DemoPie data={data_debt} />
                                                 </Col>
                                             </Row>
                                         </Col>
@@ -344,15 +444,15 @@ const Charts = () => {
                                                 <Col span={12}>
                                                     <Row gutter={[8, 8]}>
                                                         <Col span={24}>
-                                                            <DemoColumn data={data2} />
+                                                            <DemoColumn data={back_data} />
                                                         </Col>
                                                         <Col span={24}>
-                                                            <DemoLine data={data2} />
+                                                            <DemoLine data={back_data} />
                                                         </Col>
                                                     </Row>
                                                 </Col>
                                                 <Col span={12}>
-                                                    <DemoPie />
+                                                    <DemoPie data={back_data} />
                                                 </Col>
                                             </Row>
                                         </Col>
@@ -374,8 +474,8 @@ const DemoColumn = (props) => {
         data,
         isGroup: true,
         xField: 'month',
-        yField: 'money',
-        seriesField: 'name',
+        yField: 'amount',
+        seriesField: 'vol',
 
         dodgePadding: 2,
         label: {
@@ -400,62 +500,20 @@ const DemoColumn = (props) => {
 
 
 const DemoPie = (props) => {
-    const data = [
-        {
-            type: '一月',
-            value: 20,
-        },
-        {
-            type: '二月',
-            value: 30,
-        },
-        {
-            type: '三月',
-            value: 200,
-        },
-        {
-            type: '四月',
-            value: 500,
-        },
-        {
-            type: '五月',
-            value: 230,
-        },
-        {
-            type: '六月',
-            value: 120,
-        },
-        {
-            type: '七月',
-            value: 210,
-        }, {
-            type: '八月',
-            value: 50,
-        }, {
-            type: '九月',
-            value: 230,
-        }, {
-            type: '十月',
-            value: 110,
-        }, {
-            type: '十一月',
-            value: 100,
-        }, {
-            type: '十二月',
-            value: 30,
-        },
-    ];
+
+    let data = props.data;
     const config = {
         appendPadding: 10,
         data,
-        angleField: 'value',
-        colorField: 'type',
+        angleField: 'amount',
+        colorField: 'month',
+        seriesField: 'vol',
         radius: 1,
         innerRadius: 0.6,
         label: {
-            type: 'inner',
+            type: 'pie',
             offset: '-50%',
-            content: '{value}',
+            
             style: {
                 textAlign: 'center',
                 fontSize: 14,
@@ -488,8 +546,8 @@ const DemoLine = (props) => {
     const config = {
         data,
         xField: 'month',
-        yField: 'money',
-        seriesField: 'name',
+        yField: 'amount',
+        seriesField: 'vol',
         legend: {
             position: 'top',
         },
@@ -502,6 +560,5 @@ const DemoLine = (props) => {
             },
         },
     };
-
     return <Line {...config} />;
 };
