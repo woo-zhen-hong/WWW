@@ -37,55 +37,7 @@ const DebtInformation = () => {
     const [edit, setEdit] = useState(false);
     const [editcard, setEditCard] = useState({});
     const [title, setTitle] = useState('');
-    const [data, setData] = useState([{
-        key: 1,
-        debt_name: 'JACKY',
-        back_name: '軟妹',
-        money: '250',
-        tags: '欠款',
-        date: '05/01',
-        note: '麻辣燙的錢',
-    }, {
-        key: 2,
-        debt_name: 'Mingyao',
-        back_name: 'JACKY',
-        money: '250',
-        tags: '還款',
-        date: '06/01',
-        note: '深水的錢',
-    }, {
-        key: 3,
-        debt_name: 'Mingyao',
-        back_name: 'JACKY',
-        money: '100',
-        tags: '還款',
-        date: '05/01',
-        note: '加油錢',
-    }, {
-        key: 4,
-        debt_name: 'JACKY',
-        back_name: 'YEEDA',
-        money: '150',
-        tags: '欠款',
-        date: '05/05',
-        note: '麥片+牛奶',
-    }, {
-        key: 5,
-        debt_name: 'JACKY',
-        back_name: 'MINGYAO',
-        money: '50',
-        tags: '欠款',
-        date: '05/03',
-        note: '軟體之星道具',
-    }, {
-        key: 6,
-        debt_name: '婷婷',
-        back_name: 'JACKY',
-        money: '150',
-        tags: '還款',
-        date: '05/05',
-        note: '披薩',
-    }]);
+    const [data, setData] = useState([]);
     const [columns, setColumns] = useState([
         {
             title: '欠款人',
@@ -111,13 +63,13 @@ const DebtInformation = () => {
             render: (_, record) => (
                 <>
                     {
-                        record.tags === '還款' ? <>
+                        record.tags === '0' ? <>
                             <Tag color={'volcano'}>
-                                {record.tags}
+                                欠款
                             </Tag>
                         </> : <>
                             <Tag color={'geekblue'}>
-                                {record.tags}
+                                還款
                             </Tag>
                         </>
                     }
@@ -173,56 +125,10 @@ const DebtInformation = () => {
 
     const [data_debt, set_data_debt] = useState([{
         key: 1,
-        debt_name: 'JACKY',
-        back_name: '軟妹',
-        money: '250',
-        tags: '欠款',
-        date: '05/01',
-        note: '麻辣燙的錢',
-    }, {
-        key: 2,
-        debt_name: 'JACKY',
-        back_name: 'YEEDA',
-        money: '150',
-        tags: '欠款',
-        date: '05/05',
-        note: '麥片+牛奶',
-    }, {
-        key: 3,
-        debt_name: 'JACKY',
-        back_name: 'MINGYAO',
-        money: '50',
-        tags: '欠款',
-        date: '05/03',
-        note: '軟體之星道具',
-    }]);
+    },]);
     const [back_data, set_back_data] = useState([{
         key: 1,
-        debt_name: 'Mingyao',
-        back_name: 'JACKY',
-        money: '250',
-        tags: '還款',
-        date: '06/01',
-        note: '深水的錢'
-    }, {
-        key: 2,
-        debt_name: '婷婷',
-        back_name: 'JACKY',
-        money: '150',
-        tags: '還款',
-        date: '05/05',
-        note: '披薩',
-    }, {
-        key: 3,
-        debt_name: 'Mingyao',
-        back_name: 'JACKY',
-        money: '100',
-        tags: '還款',
-        date: '05/01',
-        note: '加油錢',
-    }
-        // back: '',
-        ,]);
+    },]);
     const addDebt = () => {
         setOpen(true)
         setTitle('新增欠款');
@@ -278,17 +184,9 @@ const DebtInformation = () => {
             dataIndex: 'tags',
             render: (_, record) => (
                 <>
-                    {
-                        record.tags === '還款' ? <>
-                            <Tag color={'volcano'}>
-                                {record.tags}
-                            </Tag>
-                        </> : <>
-                            <Tag color={'geekblue'}>
-                                {record.tags}
-                            </Tag>
-                        </>
-                    }
+                    <Tag color={'volcano'}>
+                        欠款
+                    </Tag>
                 </>
             ),
         },
@@ -355,17 +253,9 @@ const DebtInformation = () => {
             dataIndex: 'tags',
             render: (_, record) => (
                 <>
-                    {
-                        record.tags === '還款' ? <>
-                            <Tag color={'volcano'}>
-                                {record.tags}
-                            </Tag>
-                        </> : <>
-                            <Tag color={'geekblue'}>
-                                {record.tags}
-                            </Tag>
-                        </>
-                    }
+                    <Tag color={'geekblue'}>
+                        還款
+                    </Tag>
                 </>
             ),
         },
@@ -421,7 +311,7 @@ const DebtInformation = () => {
         axios
             .get('/backend/view_all_debt.php')
             .then((response) => {
-
+                setData(response.data.data);
             })
     }
     const getBack = () => {
@@ -442,9 +332,9 @@ const DebtInformation = () => {
         if (activeKey == 1) {
             getAllData();
         } else if (activeKey == 2) {
-            getDebt();
-        } else if (activeKey == 3) {
             getBack();
+        } else if (activeKey == 3) {
+            getDebt();
         }
     }, [activeKey])
     return (
