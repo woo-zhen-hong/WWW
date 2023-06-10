@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Tag, Table, Modal, Space, Row, Col, Button, Avatar, message, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { PlusOutlined, UserOutlined } from '@ant-design/icons';
+import axios from "axios";
 const { Search } = Input;
 const Friends = () => {
     const [name, setName] = useState('');
+    const [id, setID] = useState('');
+    const [icon_show, set_icon_show] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
     const [modalOpen, setModalOpen] = useState(false);
     const [friend, setFriend] = useState(false);
@@ -82,15 +85,39 @@ const Friends = () => {
         },
     ]);
     const onSearch = (value) => {
-        setName(value)
+        // setName(value)
+        axios
+            .post('/backend/search_friend.php', { name: value })
+            .then((response) => {
+                if (response.data.status == 'success') {
+                    set_icon_show(true)
+                    setName(value)
+                    setID(response.data.id);
+                } else {
+                    setName(response.data.status);
+                }
+            })
         setFriend(true);
     }
     const addfriend = () => {
-        setModalOpen(false);
-        messageApi.open({
-            type: 'success',
-            content: '你已和mingyao成為朋友囉～～',
-        });
+        axios
+            .post('/backend/add_friend.php', { id: id })
+            .then((response) => {
+                if (response.data.status == 'success') {
+                    setModalOpen(false);
+                    messageApi.open({
+                        type: 'success',
+                        content: '新增成功',
+                    });
+                } else {
+                    setModalOpen(false);
+                    messageApi.open({
+                        type: 'error',
+                        content: '新增失敗',
+                    });
+                }
+            })
+
     }
     return (
         <>
@@ -126,23 +153,26 @@ const Friends = () => {
                                 </Row>
                             </Col>
                             {friend ? <>
-                                <Col span={24}>
-                                    <Row justify={'center'} align={'middle'}>
-                                        <Col>
-                                            <Row justify={'center'} align={'middle'}>
-                                                {/* <Col span={22}> */}
-                                                <Avatar size={80} icon={<UserOutlined />} />
-                                                {/* </Col> */}
-                                                <Col span={22} style={{ textAlign: 'center' }}>
-                                                    {name}
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col>
-                                    <Button className='btn' style={{ backgroundColor: '#D7F5FF' }} onClick={e => addfriend()}>加為好友</Button>
-                                </Col>
+                                {icon_show ? <>
+                                    <Col span={24}>
+                                        <Row justify={'center'} align={'middle'}>
+                                            <Col>
+                                                <Row justify={'center'} align={'middle'}>
+                                                    <Avatar size={80} icon={<UserOutlined />} />
+                                                    <Col span={24} style={{ textAlign: 'center' }}>
+                                                        {name}
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                    <Col>
+                                        <Button className='btn' style={{ backgroundColor: '#D7F5FF' }} onClick={e => addfriend()}>加為好友</Button>
+                                    </Col>
+                                </> : <>
+                                    <Col span={24} style={{ textAlign: 'center' }}> {name} </Col>
+                                </>}
+
                             </> : null}
                         </Row>
                     </Col>

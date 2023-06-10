@@ -63,7 +63,7 @@ const DebtInformation = () => {
             render: (_, record) => (
                 <>
                     {
-                        record.tags === '0' ? <>
+                        record.tag === '0' ? <>
                             <Tag color={'volcano'}>
                                 欠款
                             </Tag>
@@ -88,11 +88,6 @@ const DebtInformation = () => {
             key: 'note',
 
         },
-        // {
-        //     title: '是否還款',
-        //     dataIndex: 'back',
-        //     key: 'back',
-        // },
         {
             title: '',
             key: 'action',
@@ -101,16 +96,10 @@ const DebtInformation = () => {
                     <Space>
                         <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
                         <Popconfirm
-                            title="確定要刪除好友嗎"
+                            title="確定要刪除嗎"
                             okText="確定"
                             cancelText="取消"
-                            onConfirm={e => {
-                                setData(data.filter(item => item.key != record.key));
-                                messageApi.open({
-                                    type: 'success',
-                                    content: '刪除成功',
-                                });
-                            }}
+                            onConfirm={e => { handleOnDelete(record.list_id) }}
                         >
                             <a style={{ color: 'red' }}>刪除</a>
 
@@ -202,11 +191,6 @@ const DebtInformation = () => {
             key: 'note',
 
         },
-        // {
-        //     title: '是否還款',
-        //     dataIndex: 'back',
-        //     key: 'back',
-        // },
         {
             title: '',
             key: 'action',
@@ -215,16 +199,10 @@ const DebtInformation = () => {
                     <Space>
                         <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
                         <Popconfirm
-                            title="確定要刪除好友嗎"
+                            title="確定要刪除嗎"
                             okText="確定"
                             cancelText="取消"
-                            onConfirm={e => {
-                                set_data_debt(data_debt.filter(item => item.key != record.key));
-                                messageApi.open({
-                                    type: 'success',
-                                    content: '刪除成功',
-                                });
-                            }}
+                            onConfirm={e => { handleOnDelete(record.list_id) }}
                         >
                             <a style={{ color: 'red' }}>刪除</a>
 
@@ -271,11 +249,6 @@ const DebtInformation = () => {
             key: 'note',
 
         },
-        // {
-        //     title: '是否還款',
-        //     dataIndex: 'back',
-        //     key: 'back',
-        // },
         {
             title: '',
             key: 'action',
@@ -284,19 +257,12 @@ const DebtInformation = () => {
                     <Space>
                         <a style={{ color: 'green' }} onClick={e => editItem(record)}>編輯</a>
                         <Popconfirm
-                            title="確定要刪除好友嗎"
+                            title="確定要刪除嗎"
                             okText="確定"
                             cancelText="取消"
-                            onConfirm={e => {
-                                set_back_data(back_data.filter(item => item.key != record.key));
-                                messageApi.open({
-                                    type: 'success',
-                                    content: '刪除成功',
-                                });
-                            }}
+                            onConfirm={e => { handleOnDelete(record.list_id) }}
                         >
                             <a style={{ color: 'red' }}>刪除</a>
-
                         </Popconfirm>
                     </Space>
                 </>
@@ -318,25 +284,52 @@ const DebtInformation = () => {
         axios
             .get('/backend/view_debt.php')
             .then((response) => {
-                set_data_debt(response.data.data);
+                set_back_data(response.data.data);
             })
     }
     const getDebt = () => {
         axios
             .get('/backend/view_repay.php')
             .then((response) => {
-                set_back_data(response.data.data);
+                set_data_debt(response.data.data);
             })
     }
     useEffect(() => {
         if (activeKey == 1) {
             getAllData();
         } else if (activeKey == 2) {
-            getBack();
-        } else if (activeKey == 3) {
             getDebt();
+        } else if (activeKey == 3) {
+            getBack();
         }
     }, [activeKey])
+    const handleOnDelete = (id) => {
+        axios
+            .delete('/backend/delete_list.php', {
+                data: { "id": id }
+            })
+            .then((response) => {
+                if (response.data.status == 'success') {
+                    messageApi.open({
+                        type: 'success',
+                        content: '刪除成功',
+                    });
+                } else {
+                    messageApi.open({
+                        type: 'error',
+                        content: '刪除失敗',
+                    });
+                }
+                if (activeKey == 1) {
+                    getAllData();
+                } else if (activeKey == 2) {
+                    getDebt();
+                } else if (activeKey == 3) {
+                    getBack();
+                }
+            })
+
+    }
     return (
         <>
             {contextHolder}
