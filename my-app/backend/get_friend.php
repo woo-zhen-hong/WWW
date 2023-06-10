@@ -5,7 +5,7 @@ include "index.php";
 $user_id = $_SESSION['id'];
 $sql = "SELECT * From 
         (
-            SELECT user.id, user.name 
+            SELECT user.id 'value', user.name 'label'
             FROM www.user
             LEFT JOIN www.friend ON friend.friend_id_1=user.id
             WHERE friend.friend_id_2=$user_id
@@ -13,7 +13,7 @@ $sql = "SELECT * From
         UNION 
         SELECT * From 
         (
-            SELECT user.id, user.name 
+            SELECT user.id 'value', user.name 'label'
             FROM www.user
             LEFT JOIN www.friend ON friend.friend_id_2=user.id
             WHERE friend.friend_id_1=$user_id

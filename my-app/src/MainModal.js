@@ -2,9 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Select, Tag, Form, Modal, Row, Col, Button, Affix, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
+import axios from "axios";
 import styled from 'styled-components';
 
 const MainModal = (props) => {
+    const [friend_data, set_friend_data] = useState([]);
+    useEffect(() => {
+        axios
+            .get('/backend/get_friend.php')
+            .then((response) => {
+                set_friend_data(response.data.data)
+            })
+    }, [])
     return (
         <>
             <Modal
@@ -47,25 +56,12 @@ const MainModal = (props) => {
                                     ]}
                                 >
                                     <Select
-                                        defaultValue="lucy"
                                         style={{
                                             width: '100%',
                                         }}
                                         // onChange={handleChange}
-                                        options={[
-                                            {
-                                                value: 'jack',
-                                                label: 'Jack',
-                                            },
-                                            {
-                                                value: 'lucy',
-                                                label: 'Lucy',
-                                            },
-                                            {
-                                                value: 'Yiminghe',
-                                                label: 'yiminghe',
-                                            },
-                                        ]}
+                                        options={friend_data}
+                                        placeholder='請選擇好友'
                                     />
                                 </Form.Item>
                                 <Form.Item
@@ -77,7 +73,7 @@ const MainModal = (props) => {
                                             message: '請記得填寫金額喔'
                                         }
                                     ]}
-                                    // initialValue={props.editcard.money}
+                                // initialValue={props.editcard.money}
 
                                 >
                                     <Input value={props.editcard.money} placeholder='請輸入金額' />
@@ -85,7 +81,7 @@ const MainModal = (props) => {
                                 <Form.Item
                                     name={'password'}
                                     label={'備註'}
-                                    // initialValue={props.editcard.note}
+                                // initialValue={props.editcard.note}
                                 >
                                     <Input value={props.editcard.note} placeholder='請輸入備註' />
                                 </Form.Item>

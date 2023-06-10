@@ -318,14 +318,14 @@ const DebtInformation = () => {
         axios
             .get('/backend/view_debt.php')
             .then((response) => {
-
+                set_data_debt(response.data.data);
             })
     }
     const getDebt = () => {
         axios
             .get('/backend/view_repay.php')
             .then((response) => {
-
+                set_back_data(response.data.data);
             })
     }
     useEffect(() => {
