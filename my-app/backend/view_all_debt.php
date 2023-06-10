@@ -11,7 +11,7 @@ case
 when user.id = 1 then 0
 when user2.id = 1 then 1
 END
-AS Answer
+AS tag
 FROM www.list
 LEFT JOIN www.user ON list.debt_user_id_1 = user.id 
 LEFT JOIN www.user user2 ON list.debt_user_id_2 = user2.id
