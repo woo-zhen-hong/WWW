@@ -3,21 +3,59 @@ import { Form, Tooltip, Layout, Modal, Row, Col, Button, DatePicker, Radio, Card
 import { useNavigate } from 'react-router-dom';
 import { RollbackOutlined, HeartOutlined } from '@ant-design/icons';
 import { Content } from 'antd/es/layout/layout';
+import axios from 'axios';
 const ForgetPassword = () => {
     const [success, setSuccess] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalSuccess, setModalSuccess] = useState(false);
-
+    const [password_show, set_password_show] = useState(false)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     useEffect(() => {
         document.title = '高師大記債系統';
         document.body.style.backgroundColor = '#D7F5FF';
     }, [])
     const navigate = useNavigate();
     const handleOnCheck = () => {
-
+        axios
+            .post('/backend/forget_password.php', { email: email })
+            .then((response) => {
+                if (response.data.status == 'success') {
+                    setPassword(response.data.password);
+                    set_password_show(true);
+                }
+            })
     }
     return (
         <>
+            <Modal
+                style={{ pointerEvents: 'auto' }}
+                open={password_show}
+                onCancel={() => set_password_show(false)}
+                setOpen={set_password_show}
+                width={250}
+                footer={false}
+                className="modalStyle2"
+                wrapClassName={"modalStyle2"}
+                modalRender={(e) => <>
+                    <Col span={24} style={{ backgroundColor: '#D7F5FF' }}>
+                        <Row justify={'center'} align={'middle'} style={{ padding: '10px' }}>
+                            <Col style={{ fontSize: '1.2rem', fontWeight: 400 }}>提醒通知</Col>
+                        </Row>
+                    </Col>
+                    <Col span={24} style={{ backgroundColor: '#ffffff', padding: '20px', fontSize: '1.2rem', textAlign: 'center' }}>
+                        <Row gutter={[8, 16]} justify={'center'}>
+                            <Col span={24}>
+                                你的密碼為：{password}
+                            </Col>
+                            <Col>
+                                <Button className='btn' style={{ background: '#D7F5FF', color: 'black' }} onClick={(e) => set_password_show(false)} block>返回</Button>
+                            </Col>
+                        </Row>
+                    </Col>
+                </>}
+                centered
+            />
             <Modal
                 style={{ pointerEvents: 'auto' }}
                 open={modalSuccess}
@@ -89,7 +127,8 @@ const ForgetPassword = () => {
                                     <Col span={22}>
                                         <Row gutter={[10, 10]}>
                                             <Col>
-                                                <Input placeholder='請輸入您的電子郵件' />
+                                                <Input placeholder='請輸入您的電子郵件'
+                                                    onChange={e => setEmail(e.target.value)} />
                                             </Col>
                                             <Col>
                                                 <Button className='btn' htmlType="submit"
