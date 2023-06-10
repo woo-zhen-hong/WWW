@@ -5,11 +5,9 @@ include "index.php";
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body);
 $email = $data->email;
-$password = $data->password;
 if ($email != "" && $password != "") {
     $sql = "SELECT * FROM  `www`.user
-             WHERE `www`.user.password = '$password' 
-             AND `www`.user.email= '$email' ";
+             WHERE `www`.user.email= '$email' ";
     // var_dump($sql);
     $stmt = $con->prepare($sql);
     // set parameters and execute
@@ -17,16 +15,15 @@ if ($email != "" && $password != "") {
     // var_dump($stmt);
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    // var_dump($user['id']);
     if ($user != NULL) {
-        $_SESSION["user_id"] = $user['id'];
-        // header('Location: main.php');
+        $password = $user['password'];
         $dataset = array(
-            "status" => "success"
+            "status" => "success",
+            "password" => $password,
         );
     } else {
         $dataset = array(
-            "status" => "帳號密碼錯誤",
+            "status" => "此帳號不存在",
         );
     }
 } else {
@@ -35,4 +32,3 @@ if ($email != "" && $password != "") {
     );
 }
 echo json_encode($dataset);
-

@@ -1,5 +1,6 @@
 <?php
 session_start(); // 啟用交談期
+echo json_decode($_SESSION["user_id"]);
 // Start the session
 include "index.php";
 $sql = "SELECT * FROM `www`.list

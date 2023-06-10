@@ -18,7 +18,7 @@ const Register = () => {
             set_alert_modal(true);
         } else {
             axios
-                .post('/backend/Register.php', { name: value.name, email: value.email, password: value.password1 })
+                .post('/backend/register.php', { name: value.name, email: value.email, password: value.password1 })
                 .then((response) => {
                     if (response.data.status == 'success') {
                         setModalOpen(true);

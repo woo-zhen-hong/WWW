@@ -13,6 +13,9 @@ const ForgetPassword = () => {
         document.body.style.backgroundColor = '#D7F5FF';
     }, [])
     const navigate = useNavigate();
+    const handleOnCheck = () => {
+
+    }
     return (
         <>
             <Modal
@@ -91,14 +94,16 @@ const ForgetPassword = () => {
                                             <Col>
                                                 <Button className='btn' htmlType="submit"
                                                     style={{ backgroundColor: '#B3B9F0' }}
-                                                    onClick={e => setModalOpen(true)}
+                                                    // onClick={e => setModalOpen(true)}
+                                                    onClick={handleOnCheck}
                                                 >
-                                                    傳送驗證碼至電子郵件
+                                                    {/* 傳送驗證碼至電子郵件 */}
+                                                    確定
                                                 </Button>
                                             </Col>
                                         </Row>
                                     </Col>
-                                    <Col span={22}>
+                                    {/* <Col span={22}>
                                         <Row gutter={[10, 10]}>
                                             <Col>
                                                 <Input placeholder='驗證碼' />
@@ -113,8 +118,8 @@ const ForgetPassword = () => {
                                                 </Button>
                                             </Col>
                                         </Row>
-                                    </Col>
-                                    {success ? <><Col span={22}>
+                                    </Col> */}
+                                    {/* {success ? <><Col span={22}>
                                         <Form
                                             // form={form}
                                             onFinish={(values) => {
@@ -176,7 +181,7 @@ const ForgetPassword = () => {
 
                                             </Form.Item>
                                         </Form>
-                                    </Col></> : null}
+                                    </Col></> : null} */}
                                 </Row>
                             </Col>
                             <Col md={{ span: 10 }} sm={{ span: 24 }}>
