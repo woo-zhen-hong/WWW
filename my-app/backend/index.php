@@ -14,6 +14,5 @@ $database = 'www';
 // $password = '410977004';
 // $database = '410977004';
 
-
 // db connection
 $con = mysqli_connect($hostname, $username, $password, $database) or die("Error " . mysqli_error($con));
