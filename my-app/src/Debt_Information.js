@@ -419,7 +419,7 @@ const DebtInformation = () => {
     }, [])
     const getData = () => {
         axios
-            .get('/backend/view_debt.php')
+            .get('/backend/view_all_debt.php')
             .then((response) => {
 
             })
