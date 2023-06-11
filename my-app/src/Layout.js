@@ -3,6 +3,7 @@ import { List, Avatar, Layout, Menu, Row, Col, Drawer, Badge, Button, Card, Inpu
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { BellOutlined, MenuOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import axios from 'axios';
 const { Header, Footer, Sider, Content } = Layout;
 const Outline = styled.div`
     .ant-menu-light .ant-menu-item-selected, :where(.css-dev-only-do-not-override-1fviqcj)
@@ -83,6 +84,15 @@ const MainOutlet = () => {
             content: '你還有20元沒還yeeda～～'
         },
     ];
+    const handleLogout = () => {
+        axios
+            .get('/backend/logout.php')
+            .then((response) => {
+                if (response.data.status == 'success') {
+                    navigate('/')
+                }
+            })
+    }
     return (
         <>
             <Outline>
@@ -106,7 +116,7 @@ const MainOutlet = () => {
                                 <Col style={{ position: 'absolute', right: '20px', top: '5px' }}>
                                     <Row gutter={[8, 8]} align={'top'}>
                                         <Col>
-                                            <Button className='btn' onClick={e => navigate('/')}
+                                            <Button className='btn' onClick={e => handleLogout()}
                                                 style={{ backgroundColor: '#F0E2FF' }}>登出</Button>
                                         </Col>
                                         <Col>
@@ -173,7 +183,7 @@ const MainOutlet = () => {
                                     }}
                                 />
                                 <Col span={24}>
-                                    <Button block className='btn' onClick={e => navigate('/')}
+                                    <Button block className='btn' onClick={e => handleLogout()}
                                         style={{ backgroundColor: '#F0E2FF' }}>登出</Button>
                                 </Col>
                             </>
