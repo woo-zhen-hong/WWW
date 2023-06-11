@@ -13,6 +13,7 @@ const Outline = styled.div`
     }
 `;
 const MainOutlet = () => {
+    const [count, setCount] = useState(0);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -62,28 +63,7 @@ const MainOutlet = () => {
         setSelectedKeys([window.location.pathname])
         document.title = titles[window.location.pathname]
     }, [window.location.pathname])
-    const data = [
-        {
-            title: 'Jacky Woo',
-            content: '你還有50元沒還Mingyao～～'
-        },
-        {
-            title: 'Mingyao Hoo',
-            content: 'Mingyao已還你500元～～'
-        },
-        {
-            title: '郭台銘',
-            content: '郭台銘已還你5000000元～～'
-        },
-        {
-            title: 'Jacky Woo',
-            content: '你還有520元沒還軟妹妹～～'
-        },
-        {
-            title: 'Jacky Woo',
-            content: '你還有20元沒還yeeda～～'
-        },
-    ];
+    const [data, setData] = useState([]);
     const handleLogout = () => {
         axios
             .get('/backend/logout.php')
@@ -91,6 +71,30 @@ const MainOutlet = () => {
                 if (response.data.status == 'success') {
                     navigate('/')
                 }
+            })
+    }
+    useEffect(() => {
+        getNotice();
+    }, [])
+    const getNotice = () => {
+        axios
+            .get('/backend/3days_ago.php')
+            .then((response) => {
+                let user_id = response.data.user_id;
+                let data_tmp = [];
+                response.data.data && response.data.data.map((item) => {
+                    let data_json = {};
+                    if (item.debt_user_id_1 == user_id.toString()) {
+                        data_json['title'] = item.back_name;
+                        data_json['content'] = `你還有${item.money}元沒還給${item.back_name}~~`;
+                    } else {
+                        data_json['title'] = item.debt_name;
+                        data_json['content'] = `${item.debt_name}已還你${item.money}元~~`;
+                    }
+                    data_tmp.push(data_json);
+                })
+                setData(data_tmp);
+                setCount(response.data.total);
             })
     }
     return (
@@ -120,7 +124,7 @@ const MainOutlet = () => {
                                                 style={{ backgroundColor: '#F0E2FF' }}>登出</Button>
                                         </Col>
                                         <Col>
-                                            <Badge count={5} size='small'>
+                                            <Badge count={count} size='small'>
                                                 <BellOutlined style={{ fontSize: '30px', cursor: 'pointer' }} onClick={e => setOpen(true)} />
                                             </Badge>
                                         </Col>
