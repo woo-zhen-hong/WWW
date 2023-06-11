@@ -19,23 +19,23 @@ const Friends = () => {
         },
         {
             title: '債務情況',
-            dataIndex: 'age',
-            key: 'age',
+            dataIndex: 'total',
+            key: 'total',
         },
         {
             title: '資訊',
             key: 'tags',
-            dataIndex: 'tags',
-            render: (_, { tags }) => (
+            dataIndex: 'tag',
+            render: (_, record) => (
                 <>
                     {
-                        tags === '還錢' ? <>
+                        record.tag === '0' ? <>
                             <Tag color={'volcano'}>
-                                {tags}
+                                欠款
                             </Tag>
                         </> : <>
                             <Tag color={'geekblue'}>
-                                {tags}
+                                還款
                             </Tag>
                         </>
                     }
@@ -50,13 +50,7 @@ const Friends = () => {
                     title="確定要刪除好友嗎"
                     okText="確定"
                     cancelText="取消"
-                    onConfirm={e => {
-                        setData(data.filter(item => item.key != record.key));
-                        messageApi.open({
-                            type: 'success',
-                            content: '刪除成功',
-                        });
-                    }}
+                    onConfirm={e => { handleOnDelete(record.id) }}
                 >
                     <a style={{ color: 'red' }}>刪除</a>
 
@@ -119,6 +113,36 @@ const Friends = () => {
             })
 
     }
+    const handleOnDelete = (id) => {
+        axios
+            .delete('/backend/delete_friend.php', {
+                data: { "id": id }
+            })
+            .then((response) => {
+                if (response.data.status == 'success') {
+                    messageApi.open({
+                        type: 'success',
+                        content: '刪除成功',
+                    });
+                } else {
+                    messageApi.open({
+                        type: 'error',
+                        content: '刪除失敗',
+                    });
+                }
+            })
+        getData();
+    }
+    const getData = () => {
+        axios
+            .get('/backend/get_friend_list.php')
+            .then((response) => {
+                setData(response.data.data)
+            })
+    }
+    useEffect(() => {
+        getData();
+    }, [])
     return (
         <>
             {contextHolder}
