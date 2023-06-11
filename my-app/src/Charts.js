@@ -300,22 +300,29 @@ const Charts = () => {
             .then((response) => {
                 let arr = [];
                 let test_data = response.data.data;
+                //console.log(test_data);
                 test_data.forEach(element => {
                     let final_month = element["date"].charAt(5) + element["date"].charAt(6);
                     let final_vol;
-                    if (element["tag"] === 0) {
+                    if (element["tag"] === "0") {
                         final_vol = "欠款";
+                        arr.push({
+                            vol: final_vol,
+                            month: final_month,
+                            amount: Number(element["sum"]),
+                        })
                     } else {
                         final_vol = "還款";
+                        arr.push({
+                            vol: final_vol,
+                            month: final_month,
+                            amount: Number(element["sum"]),
+                        })
                     }
-                    arr.push({
-                        vol: final_vol,
-                        month: final_month,
-                        amount: Number(element["sum"]),
-                    })
+                    
                 });
                 setData(arr);
-                //console.log(arr);
+                console.log(arr);
             })
     }
     const getBack = () => {
@@ -327,7 +334,7 @@ const Charts = () => {
                 test_data.forEach(element => {
                     let final_month = element["date"].charAt(5) + element["date"].charAt(6);
                     let final_vol;
-                    if (element["tag"] === 0) {
+                    if (element["tag"] === "0") {
                         final_vol = "欠款";
                     } else {
                         final_vol = "還款";
@@ -351,7 +358,7 @@ const Charts = () => {
                 test_data.forEach(element => {
                     let final_month = element["date"].charAt(5) + element["date"].charAt(6);
                     let final_vol;
-                    if (element["tag"] === 0) {
+                    if (element["tag"] === "0") {
                         final_vol = "欠款";
                     } else {
                         final_vol = "還款";
@@ -472,12 +479,12 @@ const DemoColumn = (props) => {
     let data = props.data;
     const config = {
         data,
-        isGroup: true,
+        isGroup: false,
         xField: 'month',
         yField: 'amount',
-        
+        seriesField: 'vol',
 
-        dodgePadding: 2,
+        dodgePadding: 3,
         label: {
             position: 'middle',
             layout: [
@@ -493,16 +500,7 @@ const DemoColumn = (props) => {
                 },
             ],
         },
-        options:{
-            scales: {
-                xAxes: [{
-                    stacked: true,
-                }],
-                yAxes: [{
-                    stacked: true
-                }]
-            },
-        }
+        
     };
 
     return <Column {...config} />;
@@ -553,6 +551,7 @@ const DemoPie = (props) => {
 };
 const DemoLine = (props) => {
     let data = props.data;
+    //console.log(data);
     const config = {
         data,
         xField: 'month',
@@ -566,7 +565,7 @@ const DemoLine = (props) => {
         animation: {
             appear: {
                 animation: 'path-in',
-                duration: 5000,
+                duration: 3000,
             },
         },
     };
