@@ -319,7 +319,7 @@ const Charts = () => {
                             amount: Number(element["sum"]),
                         })
                     }
-                    
+
                 });
                 setData(arr);
                 console.log(arr);
@@ -402,20 +402,17 @@ const Charts = () => {
                                         <Col span={24}>
                                             <Row gutter={[16, 16]} justify={'center'} align={'middle'}>
                                                 <Col span={24} style={{ fontSize: '2rem', textAlign: 'center' }}>1-12月欠還款情形</Col>
-                                                <Col md={{ span: 12 }} sm={{ span: 24 }}>
-                                                    <Row gutter={[8, 8]}>
-                                                        <Col span={24}>
-                                                            <DemoColumn data={data} />
-                                                        </Col>
-                                                        <Col span={24}>
-                                                            <DemoLine data={data} />
-                                                        </Col>
-                                                    </Row>
+                                                {/* <Col md={{ span: 12 }} sm={{ span: 24 }}> */}
+                                                {/* <Row gutter={[8, 8]}> */}
+                                                <Col span={12}>
+                                                    <DemoColumn data={data} />
                                                 </Col>
-                                                <Col md={{ span: 12 }} sm={{ span: 24 }}>
-                                                    <DemoPie data={data} />
+                                                <Col span={12}>
+                                                    <DemoLine data={data} />
                                                 </Col>
                                             </Row>
+                                            {/* </Col> */}
+                                            {/* </Row> */}
                                         </Col>
                                     </>),
                                 }, {
@@ -500,7 +497,7 @@ const DemoColumn = (props) => {
                 },
             ],
         },
-        
+
     };
 
     return <Column {...config} />;
@@ -515,13 +512,13 @@ const DemoPie = (props) => {
         data,
         angleField: 'amount',
         colorField: 'month',
- 
+
         radius: 1,
         innerRadius: 0.6,
         label: {
             type: 'pie',
             offset: '-50%',
-            
+
             style: {
                 textAlign: 'center',
                 fontSize: 14,

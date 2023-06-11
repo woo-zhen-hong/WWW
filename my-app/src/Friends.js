@@ -110,6 +110,7 @@ const Friends = () => {
                         content: '新增失敗',
                     });
                 }
+                getData();
             })
 
     }
@@ -130,8 +131,9 @@ const Friends = () => {
                         content: '刪除失敗',
                     });
                 }
+                getData();
+
             })
-        getData();
     }
     const getData = () => {
         axios

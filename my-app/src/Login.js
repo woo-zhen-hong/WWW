@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Tooltip, Layout, Modal, Row, Col, Button, DatePicker, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
+import { Form, Tooltip, Layout, message, Row, Col, Button, DatePicker, Radio, Card, Input, Popconfirm, Checkbox, Switch } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RedoOutlined, HeartOutlined } from '@ant-design/icons';
 import { Content } from 'antd/es/layout/layout';
 import axios from 'axios';
 const Login = () => {
+    const [messageApi, contextHolder] = message.useMessage();
     useEffect(() => {
         document.title = '高師大記債系統';
         document.body.style.backgroundColor = '#D7F5FF';
@@ -17,11 +18,17 @@ const Login = () => {
             .then((response) => {
                 if (response.data.status == 'success') {
                     navigate('/Debt_Information')
+                } else {
+                    messageApi.open({
+                        type: 'error',
+                        content: response.data.status,
+                    });
                 }
             })
     }
     return (
         <>
+            {contextHolder}
             <Col span={24} style={{ padding: '80px' }}>
                 <Row gutter={[8, 40]} justify={'center'}>
                     <Col>

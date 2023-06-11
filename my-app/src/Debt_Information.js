@@ -166,7 +166,15 @@ const DebtInformation = () => {
                     }
                 })
         }
-
+        setTimeout(() => {
+            if (activeKey == 1) {
+                getAllData();
+            } else if (activeKey == 2) {
+                getDebt();
+            } else if (activeKey == 3) {
+                getBack();
+            }
+        }, [1000])
     }
     const handleSubmit = () => {
         console.log(type);
@@ -409,6 +417,7 @@ const DebtInformation = () => {
                         content: '刪除失敗',
                     });
                 }
+                console.log(activeKey)
                 if (activeKey == 1) {
                     getAllData();
                 } else if (activeKey == 2) {
