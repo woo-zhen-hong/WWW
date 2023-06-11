@@ -296,14 +296,14 @@ const Charts = () => {
     }, [])
     const getAllData = () => {
         axios
-            .get('/backend/view_all_debt.php')
+            .get('/backend/chart_all.php')
             .then((response) => {
                 let arr = [];
                 let test_data = response.data.data;
                 test_data.forEach(element => {
                     let final_month = element["date"].charAt(5) + element["date"].charAt(6);
                     let final_vol;
-                    if (element["tag"] === 1) {
+                    if (element["tag"] === 0) {
                         final_vol = "欠款";
                     } else {
                         final_vol = "還款";
@@ -311,7 +311,7 @@ const Charts = () => {
                     arr.push({
                         vol: final_vol,
                         month: final_month,
-                        amount: Number(element["money"]),
+                        amount: Number(element["sum"]),
                     })
                 });
                 setData(arr);
@@ -320,14 +320,14 @@ const Charts = () => {
     }
     const getBack = () => {
         axios
-            .get('/backend/view_debt.php')
+            .get('/backend/chart_back.php')
             .then((response) => {
                 let arr = [];
                 let test_data = response.data.data;
                 test_data.forEach(element => {
                     let final_month = element["date"].charAt(5) + element["date"].charAt(6);
                     let final_vol;
-                    if (element["tag"] === 1) {
+                    if (element["tag"] === 0) {
                         final_vol = "欠款";
                     } else {
                         final_vol = "還款";
@@ -335,7 +335,7 @@ const Charts = () => {
                     arr.push({
                         vol: final_vol,
                         month: final_month,
-                        amount: Number(element["money"]),
+                        amount: Number(element["sum"]),
                     })
                 });
                 set_data_debt(arr);
@@ -344,14 +344,14 @@ const Charts = () => {
     }
     const getDebt = () => {
         axios
-            .get('/backend/view_repay.php')
+            .get('/backend/chart.php')
             .then((response) => {
                 let arr = [];
                 let test_data = response.data.data;
                 test_data.forEach(element => {
                     let final_month = element["date"].charAt(5) + element["date"].charAt(6);
                     let final_vol;
-                    if (element["tag"] === 1) {
+                    if (element["tag"] === 0) {
                         final_vol = "欠款";
                     } else {
                         final_vol = "還款";
@@ -359,7 +359,7 @@ const Charts = () => {
                     arr.push({
                         vol: final_vol,
                         month: final_month,
-                        amount: Number(element["money"]),
+                        amount: Number(element["sum"]),
                     })
                 });
                 set_back_data(arr);
@@ -475,7 +475,7 @@ const DemoColumn = (props) => {
         isGroup: true,
         xField: 'month',
         yField: 'amount',
-        seriesField: 'vol',
+        
 
         dodgePadding: 2,
         label: {
@@ -493,6 +493,16 @@ const DemoColumn = (props) => {
                 },
             ],
         },
+        options:{
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+        }
     };
 
     return <Column {...config} />;
@@ -507,7 +517,7 @@ const DemoPie = (props) => {
         data,
         angleField: 'amount',
         colorField: 'month',
-        seriesField: 'vol',
+ 
         radius: 1,
         innerRadius: 0.6,
         label: {
