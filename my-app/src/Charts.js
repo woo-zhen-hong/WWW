@@ -36,7 +36,7 @@ const data = [
         "money": 200
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Jan.",
         "money": 50
     },
@@ -46,7 +46,7 @@ const data = [
         "money": 250
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Feb.",
         "money": 150
     },
@@ -56,7 +56,7 @@ const data = [
         "money": 100
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Mar.",
         "money": 0
     },
@@ -66,7 +66,7 @@ const data = [
         "money": 150
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Apr.",
         "money": 150
     },
@@ -76,7 +76,7 @@ const data = [
         "money": 100
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "May.",
         "money": 200
     },
@@ -86,7 +86,7 @@ const data = [
         "money": 50
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Jun.",
         "money": 150
     },
@@ -96,7 +96,7 @@ const data = [
         "money": 100
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Jul.",
         "money": 170
     },
@@ -106,7 +106,7 @@ const data = [
         "money": 250
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Aug.",
         "money": 50
     },
@@ -116,7 +116,7 @@ const data = [
         "money": 100
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Sep.",
         "money": 200
     },
@@ -126,7 +126,7 @@ const data = [
         "money": 180
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Oct.",
         "money": 130
     },
@@ -136,7 +136,7 @@ const data = [
         "money": 190
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Nov.",
         "money": 150
     },
@@ -147,7 +147,7 @@ const data = [
     },
 
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Dec.",
         "money": 150
     },
@@ -217,62 +217,62 @@ const data1 = [
 ];
 const data2 = [
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Jan.",
         "money": 50
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Feb.",
         "money": 150
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Mar.",
         "money": 0
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Apr.",
         "money": 150
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "May.",
         "money": 200
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Jun.",
         "money": 150
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Jul.",
         "money": 170
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Aug.",
         "money": 50
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Sep.",
         "money": 200
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Oct.",
         "money": 130
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Nov.",
         "money": 150
     },
     {
-        "name": "收款",
+        "name": "還款",
         "month": "Dec.",
         "money": 150
     },
@@ -306,7 +306,7 @@ const Charts = () => {
                     if (element["tag"] === 1) {
                         final_vol = "欠款";
                     } else {
-                        final_vol = "收款";
+                        final_vol = "還款";
                     }
                     arr.push({
                         vol: final_vol,
@@ -330,7 +330,7 @@ const Charts = () => {
                     if (element["tag"] === 1) {
                         final_vol = "欠款";
                     } else {
-                        final_vol = "收款";
+                        final_vol = "還款";
                     }
                     arr.push({
                         vol: final_vol,
@@ -354,7 +354,7 @@ const Charts = () => {
                     if (element["tag"] === 1) {
                         final_vol = "欠款";
                     } else {
-                        final_vol = "收款";
+                        final_vol = "還款";
                     }
                     arr.push({
                         vol: final_vol,

@@ -31,11 +31,12 @@ const CustomTabs = styled.div`
     }
 `;
 const DebtInformation = () => {
+    const [type, setType] = useState(null);
     const [messageApi, contextHolder] = message.useMessage();
     const [activeKey, setActivety] = useState(1);
     const [open, setOpen] = useState(false);
     const [edit, setEdit] = useState(false);
-    const [editcard, setEditCard] = useState({});
+    const [editcard, setEditCard] = useState({ id: '', amount: '', alert: '', note: '' });
     const [title, setTitle] = useState('');
     const [data, setData] = useState([]);
     const [columns, setColumns] = useState([
@@ -135,11 +136,49 @@ const DebtInformation = () => {
         });
     }
     const handleSubmit = () => {
+        console.log(type);
+        console.log(editcard)
+        if (type == 'debt') {
+            axios
+                .post('/backend/add_debt.php', editcard)
+                .then((response) => {
+                    if (response.data.status == 'success') {
+                        messageApi.open({
+                            type: 'success',
+                            content: '新增成功',
+                        });
+                    } else {
+                        messageApi.open({
+                            type: 'erroe',
+                            content: '新增失敗',
+                        });
+                    }
+                })
+        } else {
+            axios
+                .post('/backend/add_repay.php', editcard)
+                .then((response) => {
+                    if (response.data.status == 'success') {
+                        messageApi.open({
+                            type: 'success',
+                            content: '新增成功',
+                        });
+                    } else {
+                        messageApi.open({
+                            type: 'erroe',
+                            content: '新增失敗',
+                        });
+                    }
+                })
+        }
         setOpen(false);
-        messageApi.open({
-            type: 'success',
-            content: '新增成功',
-        });
+        if (activeKey == 1) {
+            getAllData();
+        } else if (activeKey == 2) {
+            getDebt();
+        } else if (activeKey == 3) {
+            getBack();
+        }
     }
     const editItem = (record) => {
         // setEditCard({});
@@ -343,14 +382,15 @@ const DebtInformation = () => {
                     edit={edit}
                     editcard={editcard}
                     setEditCard={setEditCard}
+                    type={type}
                 />
                 <Col apn={24}>
                     <Row gutter={[8, 8]} justify={'end'}>
                         <Col span={24} style={{ fontSize: '2rem' }}>瀏覽債務資訊</Col>
                         <Col>
                             <Row gutter={[8, 8]}>
-                                <Col><Button className='btn' style={{ backgroundColor: '#7DAAFF', color: 'white' }} onClick={addDebt}>新增欠款</Button></Col>
-                                <Col><Button className='btn' style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={addBack}>新增收款</Button></Col>
+                                <Col><Button className='btn' style={{ backgroundColor: '#7DAAFF', color: 'white' }} onClick={e => { setEditCard({ id: '', amount: '', alert: '', note: '' }); setType('debt'); addDebt() }}>新增欠款</Button></Col>
+                                <Col><Button className='btn' style={{ backgroundColor: '#00BDB7', color: 'white' }} onClick={e => { setEditCard({ id: '', amount: '', alert: '', note: '' }); setType('repay'); addBack() }}>新增還款</Button></Col>
                             </Row>
                         </Col>
                         <Col span={24}>
@@ -367,7 +407,7 @@ const DebtInformation = () => {
                                             <Table tableLayout={'fixed'}
                                                 scroll={{ x: 'max-content' }}
                                                 columns={columns} dataSource={data}
-                                                pagination={false}></Table>
+                                                pagination></Table>
                                         </Col>
                                     </>),
                                 }, {
@@ -399,8 +439,8 @@ const DebtInformation = () => {
                             <img src='./nomoney.png'></img>
                         </Col>
                     </Row>
-                </Col>
-            </CustomTabs>
+                </Col >
+            </CustomTabs >
         </>
     )
 }

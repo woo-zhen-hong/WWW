@@ -35,9 +35,9 @@ const MainModal = (props) => {
                         <Row gutter={[8, 16]} justify={'center'} >
                             <Form
                                 // form={form}
-                                onFinish={(values) => {
-                                    console.log(values)
-                                }}
+                                // onFinish={(values) => {
+                                //     console.log(values)
+                                // }}
                                 wrapperCol={{
                                     span: 18
                                 }}
@@ -46,7 +46,7 @@ const MainModal = (props) => {
                                 }}
                             >
                                 <Form.Item
-                                    name={'account'}
+                                    name={'id'}
                                     label={'帳號'}
                                     rules={[
                                         {
@@ -59,13 +59,25 @@ const MainModal = (props) => {
                                         style={{
                                             width: '100%',
                                         }}
-                                        // onChange={handleChange}
+                                        labelInValue
+                                        onChange={value => props.setEditCard(
+                                            pre => {
+                                                return (
+                                                    {
+                                                        ...pre,
+                                                        id: value.value,
+                                                        name: value.label,
+                                                    }
+                                                )
+                                            }
+                                        )}
+                                        value={props.editcard.name}
                                         options={friend_data}
                                         placeholder='請選擇好友'
                                     />
                                 </Form.Item>
                                 <Form.Item
-                                    name={'money'}
+                                    name={'amount'}
                                     label={'金額'}
                                     rules={[
                                         {
@@ -76,20 +88,50 @@ const MainModal = (props) => {
                                 // initialValue={props.editcard.money}
 
                                 >
-                                    <Input value={props.editcard.money} placeholder='請輸入金額' />
+                                    <Input value={props.editcard.amoount} placeholder='請輸入金額'
+                                        onChange={e => props.setEditCard(
+                                            pre => {
+                                                return (
+                                                    {
+                                                        ...pre,
+                                                        amount: e.target.value
+                                                    }
+                                                )
+                                            }
+                                        )} />
                                 </Form.Item>
                                 <Form.Item
-                                    name={'password'}
+                                    name={'note'}
                                     label={'備註'}
                                 // initialValue={props.editcard.note}
                                 >
-                                    <Input value={props.editcard.note} placeholder='請輸入備註' />
+                                    <Input value={props.editcard.note} placeholder='請輸入備註'
+                                        onChange={e => props.setEditCard(
+                                            pre => {
+                                                return (
+                                                    {
+                                                        ...pre,
+                                                        note: e.target.value
+                                                    }
+                                                )
+                                            }
+                                        )} />
                                 </Form.Item>
                                 <Form.Item
-                                    name={'password'}
+                                    name={'alert'}
                                     wrapperCol={{ offset: 6 }}
                                 >
-                                    <Checkbox>提醒通知</Checkbox>
+                                    <Checkbox
+                                        onChange={e => props.setEditCard(
+                                            pre => {
+                                                return (
+                                                    {
+                                                        ...pre,
+                                                        alert: e.target.checked ? 1 : 0,
+                                                    }
+                                                )
+                                            }
+                                        )}>提醒通知</Checkbox>
                                 </Form.Item>
                             </Form>
                             <Col span={24}>
