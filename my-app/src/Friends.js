@@ -191,10 +191,10 @@ const Friends = () => {
                                         </Row>
                                     </Col>
                                     <Col>
-                                        <Button className='btn' style={{ backgroundColor: '#D7F5FF' }} onClick={e => setModalOpen(false)}>取消</Button>
+                                        <Button className='btn' style={{ backgroundColor: '#D7F5FF' }} onClick={e => addfriend()}>加為好友</Button>
                                     </Col>
                                     <Col>
-                                        <Button className='btn' style={{ backgroundColor: '#D7F5FF' }} onClick={e => addfriend()}>加為好友</Button>
+                                        <Button className='btn' style={{ backgroundColor: '#D7F5FF' }} onClick={e => setModalOpen(false)}>取消</Button>
                                     </Col>
                                 </> : <>
                                     <Col span={24} style={{ textAlign: 'center' }}> {name} </Col>

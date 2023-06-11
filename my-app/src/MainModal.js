@@ -14,6 +14,9 @@ const MainModal = (props) => {
                 set_friend_data(response.data.data)
             })
     }, [])
+    useEffect(() => {
+        console.log(props.editcard);
+    }, [props.editcard])
     return (
         <>
             <Modal
@@ -32,108 +35,74 @@ const MainModal = (props) => {
                         </Row>
                     </Col>
                     <Col span={24} style={{ backgroundColor: '#ffffff', padding: '20px' }}>
-                        <Row gutter={[8, 16]} justify={'center'} >
-                            <Form
-                                // form={form}
-                                // onFinish={(values) => {
-                                //     console.log(values)
-                                // }}
-                                wrapperCol={{
-                                    span: 18
-                                }}
-                                labelCol={{
-                                    span: 6
-                                }}
-                            >
-                                <Form.Item
-                                    name={'id'}
-                                    label={'帳號'}
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: '請記得填寫姓名喔'
-                                        }
-                                    ]}
-                                >
-                                    <Select
-                                        style={{
-                                            width: '100%',
-                                        }}
-                                        labelInValue
-                                        onChange={value => props.setEditCard(
-                                            pre => {
-                                                return (
-                                                    {
-                                                        ...pre,
-                                                        id: value.value,
-                                                        name: value.label,
-                                                    }
-                                                )
-                                            }
-                                        )}
-                                        value={props.editcard.name}
-                                        options={friend_data}
-                                        placeholder='請選擇好友'
-                                    />
-                                </Form.Item>
-                                <Form.Item
-                                    name={'amount'}
-                                    label={'金額'}
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: '請記得填寫金額喔'
-                                        }
-                                    ]}
-                                // initialValue={props.editcard.money}
+                        <Row gutter={[8, 16]} justify={'center'} align={'middle'}>
 
-                                >
-                                    <Input value={props.editcard.amoount} placeholder='請輸入金額'
-                                        onChange={e => props.setEditCard(
-                                            pre => {
-                                                return (
-                                                    {
-                                                        ...pre,
-                                                        amount: e.target.value
-                                                    }
-                                                )
-                                            }
-                                        )} />
-                                </Form.Item>
-                                <Form.Item
-                                    name={'note'}
-                                    label={'備註'}
-                                // initialValue={props.editcard.note}
-                                >
-                                    <Input value={props.editcard.note} placeholder='請輸入備註'
-                                        onChange={e => props.setEditCard(
-                                            pre => {
-                                                return (
-                                                    {
-                                                        ...pre,
-                                                        note: e.target.value
-                                                    }
-                                                )
-                                            }
-                                        )} />
-                                </Form.Item>
-                                <Form.Item
-                                    name={'alert'}
-                                    wrapperCol={{ offset: 6 }}
-                                >
-                                    <Checkbox
-                                        onChange={e => props.setEditCard(
-                                            pre => {
-                                                return (
-                                                    {
-                                                        ...pre,
-                                                        alert: e.target.checked ? 1 : 0,
-                                                    }
-                                                )
-                                            }
-                                        )}>提醒通知</Checkbox>
-                                </Form.Item>
-                            </Form>
+                            <Col span={5}>帳號</Col>
+                            <Col span={17}>
+                                <Select
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    value={props.editcard.name}
+                                    labelInValue
+                                    onChange={value => props.setEditCard(
+                                        pre => {
+                                            return (
+                                                {
+                                                    ...pre,
+                                                    id: value.value,
+                                                    name: value.label,
+                                                }
+                                            )
+                                        }
+                                    )}
+                                    options={friend_data}
+                                    placeholder='請選擇好友'
+                                />
+                            </Col>
+                            <Col span={5}>金額</Col>
+                            <Col span={17}>
+                                <Input value={props.editcard.amount} placeholder='請輸入金額'
+                                    onChange={e => props.setEditCard(
+                                        pre => {
+                                            return (
+                                                {
+                                                    ...pre,
+                                                    amount: e.target.value
+                                                }
+                                            )
+                                        }
+                                    )} />
+                            </Col>
+                            <Col span={5}>備註</Col>
+                            <Col span={17}>
+                                <Input value={props.editcard.note} placeholder='請輸入備註'
+                                    onChange={e => props.setEditCard(
+                                        pre => {
+                                            return (
+                                                {
+                                                    ...pre,
+                                                    note: e.target.value
+                                                }
+                                            )
+                                        }
+                                    )} />
+                            </Col>
+                            <Col span={5}></Col>
+                            <Col span={17}>
+                                <Checkbox
+                                    value={props.editcard.alert == '1 ' ? true : false}
+                                    onChange={e => props.setEditCard(
+                                        pre => {
+                                            return (
+                                                {
+                                                    ...pre,
+                                                    alert: e.target.checked ? '1' : '0',
+                                                }
+                                            )
+                                        }
+                                    )}>提醒通知</Checkbox>
+                            </Col>
                             <Col span={24}>
                                 <Row >
                                     <Col span={24}>

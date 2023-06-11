@@ -129,11 +129,44 @@ const DebtInformation = () => {
 
     }
     const handleEdit = () => {
-        setOpen(false);
-        messageApi.open({
-            type: 'success',
-            content: '更新成功',
-        });
+        if (type == 'debt') {
+            axios
+                .patch('/backend/edit_debt.php', editcard)
+                .then((response) => {
+                    if (response.data.status == 'success') {
+                        setOpen(false);
+                        messageApi.open({
+                            type: 'success',
+                            content: '更新成功',
+                        });
+                    } else {
+                        setOpen(false);
+                        messageApi.open({
+                            type: 'error',
+                            content: '更新失敗',
+                        });
+                    }
+                })
+        } else {
+            axios
+                .patch('/backend/edit_repay.php', editcard)
+                .then((response) => {
+                    if (response.data.status == 'success') {
+                        setOpen(false);
+                        messageApi.open({
+                            type: 'success',
+                            content: '更新成功',
+                        });
+                    } else {
+                        setOpen(false);
+                        messageApi.open({
+                            type: 'error',
+                            content: '更新失敗',
+                        });
+                    }
+                })
+        }
+
     }
     const handleSubmit = () => {
         console.log(type);
@@ -181,15 +214,32 @@ const DebtInformation = () => {
         }
     }
     const editItem = (record) => {
-        // setEditCard({});
+        setEditCard({});
         setEdit(true);
-        if (record.tags == '還款') {
-            setTitle('編輯還款');
-
-        } else {
+        if (record.tag == '0') {
             setTitle('編輯欠款');
+            setType('debt');
+            setEditCard(pre => {
+                return ({
+                    ...record,
+                    name: record.back_name,
+                    amount: record.money,
+                    id: record.debt_user_id_1,
+                })
+            })
+        } else {
+            setTitle('編輯還款');
+            setType('repay')
+            setEditCard(pre => {
+                return ({
+                    ...record,
+                    name: record.debt_name,
+                    amount: record.money,
+                    id: record.debt_user_id_2,
+                })
+            })
         }
-        setEditCard(record);
+        // setEditCard(record);
         setOpen(true);
 
     }

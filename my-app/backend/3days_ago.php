@@ -5,6 +5,8 @@ include "index.php";
 $user_id = $_SESSION['id'];
 $sql = "SELECT  list.id 'list_id',  list.amount 'money',list.debt_date 'date' 
 ,list.debt_note 'note'
+,list.debt_user_id_1 
+,list.debt_user_id_2 
 , user.name 'debt_name'
 , user2.name 'back_name'
 ,case
@@ -24,6 +26,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 $dataset = array(
     "total" => count($array),
-    "data" => $array
+    "data" => $array,
+    "user_id" => $user_id,
 );
 echo json_encode($dataset);
